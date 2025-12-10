@@ -1,10 +1,9 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo "📝 Validating commit message..."
 
 # Run commitlint with your config file
-npx --yes commitlint --config commitlint.config.cjs --edit "$1"
+npx --yes commitlint --config commitlint.config.js --edit "$1"
 
 if [ $? -eq 0 ]; then
   echo "✅ Commit message is valid!"
