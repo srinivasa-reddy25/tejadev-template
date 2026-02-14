@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import { getHealthController } from '../controllers/health/get-health.ts'
+import { get_health_controller } from '../controllers/health/get-health.ts'
 
 const router = Router()
 
-router.get('/', getHealthController)
+router.get('/', get_health_controller)
 
-export { router as healthRouter }
+export { router as health_router }

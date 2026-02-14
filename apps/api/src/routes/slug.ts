@@ -1,9 +1,9 @@
 import { Router } from 'express'
 
-import { postSlugController } from '../controllers/slug/post-slug.ts'
+import { post_slug_controller } from '../controllers/slug/post-slug.ts'
 
 const router = Router()
 
-router.post('/', postSlugController)
+router.post('/', post_slug_controller)
 
-export { router as slugRouter }
+export { router as slug_router }

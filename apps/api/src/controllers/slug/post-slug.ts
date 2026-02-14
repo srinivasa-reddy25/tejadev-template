@@ -6,7 +6,7 @@ type TBody = {
   text?: string
 }
 
-const postSlugController = (
+const post_slug_controller = (
   req: Request<unknown, unknown, TBody>,
   res: Response
 ) => {
@@ -15,4 +15,4 @@ const postSlugController = (
   res.json({ input: text, slug })
 }
 
-export { postSlugController }
+export { post_slug_controller }
