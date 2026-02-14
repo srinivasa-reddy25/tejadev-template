@@ -16,9 +16,9 @@ app.get('/health', (_req: Request, res: Response) => {
   })
 })
 
-app.get('/slug', (req: Request, res: Response) => {
-  const { text } = req.body
-  const slug = slugify(text ?? '')
+app.post('/slug', (req: Request, res: Response) => {
+  const text = req.body.text
+  const slug = slugify(text)
   res.json({ input: text, slug })
 })
 

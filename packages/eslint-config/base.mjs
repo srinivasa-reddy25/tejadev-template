@@ -37,9 +37,6 @@ const baseConfig = [
         }
       ]
     }
-  },
-  {
-    ignores: ['.dist/**']
   }
 ]
 
