@@ -1,14 +1,43 @@
-/** @type {import("prettier").Config} */
+/**
+ * Prettier configuration
+ * @type {import('prettier').Config}
+ */
 const config = {
-  printWidth: 100,
-  tabWidth: 2,
-  useTabs: false,
-  semi: true,
-  singleQuote: false,
-  trailingComma: "all",
-  bracketSpacing: true,
+  semi: false,
+  singleQuote: true,
+  trailingComma: "none",
   arrowParens: "always",
+  tabWidth: 2,
   endOfLine: "lf",
+
+  plugins: [
+    "prettier-plugin-tailwindcss",
+    "@ianvs/prettier-plugin-sort-imports",
+  ],
+
+  overrides: [
+    {
+      files: "*.{js,jsx,ts,tsx}",
+      options: {
+        importOrder: [
+          "<BUILTIN_MODULES>",
+          "^react$",
+          "^next(.*)$",
+          "^express(.*)$",
+          "",
+          "<THIRD_PARTY_MODULES>",
+          "",
+          "^@tejadev/(.*)$",
+          "^@/(.*)$",
+          "",
+          "^../(.*)$",
+          "^./(.*)$",
+        ],
+        importOrderSeparation: true,
+        importOrderSortSpecifiers: true,
+      },
+    },
+  ],
 };
 
 export default config;

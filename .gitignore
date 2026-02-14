@@ -1,17 +1,29 @@
+# Dependencies
 node_modules
-dist
-.turbo
+
+# Build artifacts
 .next
-coverage
-.eslintcache
+.dist
 
+# Cache and temporary files
+.turbo
+.cache
+.temp
+*.log
+.logs
+
+# Environment files
 .env
-.env.*
+*.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Local files (scripts, configs, etc.)
+*.local.*
 
+# TypeScript
+tsconfig.tsbuildinfo
+
+.nvmrc
+# System files
 .DS_Store
-.idea
-.vscode/*.log
+
+firebase.json
