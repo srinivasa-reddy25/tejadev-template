@@ -10,6 +10,7 @@ const baseConfig = [
       '**/dist/**',
       '**/.turbo/**',
       '**/.next/**',
+      '**/next-env.d.ts',
       '**/coverage/**'
     ]
   },
