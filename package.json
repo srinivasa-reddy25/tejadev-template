@@ -18,7 +18,7 @@
     "format:check": "prettier --check \"**/*.{json,js,jsx,ts,tsx,md}\"",
     "ci:check": "bun run format:check && bun run lint && bun run typecheck && bun run build"
   },
-  "packageManager": "bun@1.1.42",
+  "packageManager": "bun@1.3.9",
   "engines": {
     "node": ">=18"
   },
