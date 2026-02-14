@@ -4,11 +4,11 @@ Minimal Express API app wired to shared monorepo configs.
 
 ## Scripts
 
-- `npm run dev` - Start API in watch mode
-- `npm run build` - Compile TypeScript to `dist/`
-- `npm run start` - Run compiled server
-- `npm run typecheck` - Type-check only
-- `npm run lint` - Lint source
+- `bun run dev` - Start API in watch mode
+- `bun run build` - Compile TypeScript to `dist/`
+- `bun run start` - Run compiled server
+- `bun run typecheck` - Type-check only
+- `bun run lint` - Lint source
 
 ## Endpoints
 

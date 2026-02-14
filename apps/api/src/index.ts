@@ -1,4 +1,5 @@
-import express, { type Request, type Response } from 'express'
+import type { Request, Response } from 'express'
+import express from 'express'
 
 import { slugify } from '@tejadev/shared'
 

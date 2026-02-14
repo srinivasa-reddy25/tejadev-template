@@ -18,7 +18,8 @@
     ".turbo": true,
     "dist": true,
     "node_modules": true,
-    "package-lock.json": true
+    "bun.lock": true,
+    "bun.lockb": true
   },
   "files.associations": {
     "*.css": "tailwindcss",
