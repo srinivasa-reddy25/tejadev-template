@@ -3,7 +3,11 @@
 echo "📝 Validating commit message..."
 
 # Run commitlint with your config file
-npx --yes commitlint --config commitlint.config.js --edit "$1"
+if command -v bunx >/dev/null 2>&1; then
+  bunx commitlint --config commitlint.config.js --edit "$1"
+else
+  npx --yes commitlint --config commitlint.config.js --edit "$1"
+fi
 
 if [ $? -eq 0 ]; then
   echo "✅ Commit message is valid!"

@@ -2,7 +2,11 @@
 
 echo "🔍 Running pre-commit checks (lint + format)..."
 
-npx --yes lint-staged
+if command -v bunx >/dev/null 2>&1; then
+  bunx lint-staged
+else
+  npx --yes lint-staged
+fi
 
 if [ $? -eq 0 ]; then
   echo "✨ All staged files are clean!"

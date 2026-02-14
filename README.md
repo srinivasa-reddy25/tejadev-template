@@ -4,7 +4,7 @@ Reusable starter template to bootstrap full-stack TypeScript projects with a cle
 
 ## Tech Stack
 
-- npm workspaces
+- Bun workspaces
 - Turborepo
 - TypeScript
 - ESLint (flat config) + Prettier
@@ -31,25 +31,25 @@ Use a single root env file for all apps.
 ## Quick Start
 
 ```bash
-npm install
+bun install
 cp .env.example .env
-npm run dev
+bun run dev
 ```
 
 ## Useful Commands
 
-- `npm run dev` - Run all app/package dev tasks with Turbo
-- `npm run build` - Build all workspaces
-- `npm run lint` - Run ESLint across workspaces
-- `npm run typecheck` - Run TypeScript checks across workspaces
-- `npm run format` - Format repo files with Prettier
-- `npm run ci:check` - Full local CI check (format, lint, typecheck, build)
+- `bun run dev` - Run all app/package dev tasks with Turbo
+- `bun run build` - Build all workspaces
+- `bun run lint` - Run ESLint across workspaces
+- `bun run typecheck` - Run TypeScript checks across workspaces
+- `bun run format` - Format repo files with Prettier
+- `bun run ci:check` - Full local CI check (format, lint, typecheck, build)
 
 ## Smoke Checklist
 
-- `npm run ci:check` passes locally
-- `npm -w @tejadev/api run dev` starts API
-- `npm -w @tejadev/web run dev` starts web app
+- `bun run ci:check` passes locally
+- `bun run --filter @tejadev/api dev` starts API
+- `bun run --filter @tejadev/web dev` starts web app
 - `GET /health` on API returns JSON
 - web app renders and uses shared import from `@tejadev/shared`
 
