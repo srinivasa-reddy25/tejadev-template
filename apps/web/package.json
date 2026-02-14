@@ -8,7 +8,7 @@
     "build": "dotenv -e ../../.env -- next build",
     "start": "dotenv -e ../../.env -- next start",
     "clean": "rm -rf .next",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {

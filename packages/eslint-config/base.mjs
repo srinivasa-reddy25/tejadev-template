@@ -1,4 +1,5 @@
 import eslint from '@eslint/js'
+import eslintConfigPrettier from 'eslint-config-prettier'
 import tseslint from 'typescript-eslint'
 import turboPlugin from 'eslint-plugin-turbo'
 import prettierPlugin from 'eslint-plugin-prettier'
@@ -16,6 +17,7 @@ const baseConfig = [
   },
   eslint.configs.recommended,
   ...tseslint.configs.recommended,
+  eslintConfigPrettier,
   {
     files: ['**/*.{ts,tsx,js,jsx,mjs,cjs}'],
     plugins: {
@@ -23,9 +25,21 @@ const baseConfig = [
       prettier: prettierPlugin
     },
     rules: {
-      'turbo/no-undeclared-env-vars': 'warn',
-      'prettier/prettier': 'warn'
+      'turbo/no-undeclared-env-vars': 'off',
+      'prettier/prettier': 'error',
+      '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_'
+        }
+      ]
     }
+  },
+  {
+    ignores: ['.dist/**']
   }
 ]
 

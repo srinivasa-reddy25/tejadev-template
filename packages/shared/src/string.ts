@@ -1,4 +1,4 @@
-export interface SlugifyOptions {
+export type SlugifyOptions = {
   lowercase?: boolean
   separator?: '-' | '_'
 }
