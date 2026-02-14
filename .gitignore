@@ -3,7 +3,7 @@ node_modules
 
 # Build artifacts
 .next
-.dist
+dist
 
 # Cache and temporary files
 .turbo
