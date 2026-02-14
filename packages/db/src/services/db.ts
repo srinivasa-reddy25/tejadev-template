@@ -2,14 +2,16 @@ import 'colors'
 
 import mongoose from 'mongoose'
 
-export const connect_db = async (db_url: string): Promise<void> => {
+import { env } from '../constants/env'
+
+export const connect_db = async (): Promise<void> => {
   try {
-    if (!db_url || db_url === 'NA') {
+    if (!env.db_url || env.db_url === 'NA') {
       console.error('No database URL provided, skipping connection'.yellow)
       return
     }
 
-    await mongoose.connect(db_url)
+    await mongoose.connect(env.db_url)
     const db_name = mongoose.connection.name
     console.log(`Database [${db_name}] connected successfully`.cyan)
   } catch (error) {

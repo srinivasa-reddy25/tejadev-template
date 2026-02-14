@@ -1,8 +1,9 @@
+import { connect_db, disconnect_db } from 'db'
+
 import { slugify } from '@tejadev/shared'
 
 import { httpServer } from './app.ts'
 import { env } from './constants/env.ts'
-import { connect_db, disconnect_db } from './services/db.ts'
 
 const start_server = async (): Promise<void> => {
   try {

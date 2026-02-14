@@ -8,13 +8,13 @@ import 'express-async-errors'
 
 import fileUpload from 'express-fileupload'
 
+import { get_db_status } from 'db'
 import morgan from 'morgan'
 
 import { env } from './constants/env.ts'
 import error_handler from './middlewares/error-handler.ts'
 import { success_handler } from './middlewares/success-handler.ts'
 import { slug_router } from './routes/slug.ts'
-import { get_db_status } from './services/db.ts'
 import CustomError from './utils/CustomError.ts'
 
 const app = express()
