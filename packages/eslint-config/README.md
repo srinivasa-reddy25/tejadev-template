@@ -13,8 +13,8 @@ Shared ESLint flat config presets for this monorepo.
 In a workspace `eslint.config.mjs`:
 
 ```js
-import { defineConfig } from 'eslint/config'
 import nodeConfig from '@tejadev/eslint-config/node'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig(...nodeConfig)
 ```

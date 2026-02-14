@@ -12,8 +12,11 @@
     "test": "turbo run test",
     "clean": "turbo run clean && rm -rf .turbo node_modules",
     "lint": "turbo run lint",
+    "lint:fix": "turbo run lint -- --fix",
     "typecheck": "turbo run typecheck",
-    "format": "prettier --write \"**/*.{json,js,jsx,ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{json,js,jsx,ts,tsx,md}\"",
+    "format:check": "prettier --check \"**/*.{json,js,jsx,ts,tsx,md}\"",
+    "ci:check": "npm run format:check && npm run lint && npm run typecheck && npm run build"
   },
   "packageManager": "npm@11.1.0",
   "engines": {
