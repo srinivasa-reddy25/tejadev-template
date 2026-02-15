@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "dotenv -e ../../.env -- bun --watch src/index.ts",
     "build": "bun build src/index.ts --outdir dist --target bun --sourcemap",
+    "build:docker": "bun build src/index.ts --outdir dist --target bun --sourcemap",
     "start": "dotenv -e ../../.env -- bun src/index.ts",
+    "start:docker": "bun src/index.ts",
     "clean": "rm -rf dist tsconfig.tsbuildinfo",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json --noEmit"
