@@ -2,12 +2,12 @@ import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios'
 
 import { env } from '@/constants/env'
 
-let get_access_token: (() => Promise<string | null>) | null = null
+let getAccessToken: (() => Promise<string | null>) | null = null
 
-export const set_access_token_getter = (
+export const setAccessTokenGetter = (
   getter: () => Promise<string | null>
 ): void => {
-  get_access_token = getter
+  getAccessToken = getter
 }
 
 const api: AxiosInstance = axios.create({
@@ -23,7 +23,7 @@ api.interceptors.request.use(
   async (config) => {
     config.headers = config.headers || {}
 
-    const token = get_access_token ? await get_access_token() : null
+    const token = getAccessToken ? await getAccessToken() : null
 
     if (token && !config.headers.Authorization) {
       config.headers.Authorization = `Bearer ${token}`
@@ -44,4 +44,4 @@ api.interceptors.response.use(
 )
 
 export { api }
-export const api_client = api
+export const apiClient = api

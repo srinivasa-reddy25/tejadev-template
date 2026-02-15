@@ -2,9 +2,11 @@
 
 import { slugify } from '@tejadev/shared'
 import { env } from '@/constants/env'
+import { useHealth } from '@/hooks/api/health'
 
 export default function HomePage() {
   const slug = slugify(env.NEXT_PUBLIC_APP_NAME)
+  const { data, error, isLoading } = useHealth()
 
   return (
     <main className="min-h-screen w-full bg-background text-foreground">
@@ -54,6 +56,26 @@ export default function HomePage() {
             </div>
           </article>
         </div>
+
+        <article className="rounded-xl border border-border bg-card p-6">
+          <p className="text-sm text-muted-foreground">API connectivity test</p>
+          <h2 className="mt-2 text-2xl font-semibold text-primary">
+            Backend Health
+          </h2>
+          {isLoading ? (
+            <p className="mt-2 text-base text-muted-foreground">
+              Checking API...
+            </p>
+          ) : null}
+          {!isLoading && data ? (
+            <p className="mt-2 text-base text-foreground">{data.message}</p>
+          ) : null}
+          {!isLoading && error ? (
+            <p className="mt-2 text-base text-destructive">
+              API not reachable. Check `NEXT_PUBLIC_API_URL` and API server.
+            </p>
+          ) : null}
+        </article>
       </section>
     </main>
   )

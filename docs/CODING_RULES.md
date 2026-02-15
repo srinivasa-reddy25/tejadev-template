@@ -19,6 +19,12 @@ Read this before writing or changing code in this monorepo.
 4. Put global tokens in `apps/web/src/app/globals.css`.
 5. Keep Tailwind theme mappings in `apps/web/tailwind.config.mjs`.
 
+## Naming Rules (Web)
+
+1. Use camelCase for web function names.
+2. Use camelCase for web hooks with `useXxx` naming.
+3. Avoid snake_case for functions/hooks in web code.
+
 ## API Rules
 
 1. Keep app bootstrap in `src/index.ts` and app wiring in `src/app.ts`.

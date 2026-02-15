@@ -29,7 +29,18 @@ Use `src` with this structure:
 
 1. Use TanStack Query for server state.
 2. Keep API clients in `src/lib`.
-3. Keep hook wrappers in `src/hooks/api`.
+3. Keep route hooks in `src/hooks/api` as one file per route (for example `health.ts`).
+4. For each route hook file, keep this order:
+   type
+   api call
+   hook
+5. Do not create separate `services` files for normal route API calls.
+
+## Naming Rules
+
+1. Use camelCase for function names in web code.
+2. Use camelCase for hook names (`useXxx`), for example `useHealth`.
+3. Do not use snake_case for web functions/hooks.
 
 ## Process
 
