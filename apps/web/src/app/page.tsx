@@ -8,11 +8,11 @@ export default function HomePage() {
 
   return (
     <main className="mx-auto flex min-h-screen w-full max-w-4xl items-center p-8">
-      <section className="w-full rounded-2xl border border-black/10 bg-white p-8 shadow-sm">
-        <h1 className="text-3xl font-semibold tracking-tight text-red-500">
+      <section className="w-full rounded-2xl border border-border bg-card p-8 shadow-sm">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground">
           {env.NEXT_PUBLIC_APP_NAME}
         </h1>
-        <p className="mt-3 text-sm text-black/70">
+        <p className="mt-3 text-sm text-muted-foreground">
           Slug from shared package: {slug}
         </p>
       </section>
