@@ -23,6 +23,10 @@ const config = {
           DEFAULT: 'hsl(var(--secondary))',
           foreground: 'hsl(var(--secondary-foreground))'
         },
+        tertiary: {
+          DEFAULT: 'hsl(var(--tertiary))',
+          foreground: 'hsl(var(--tertiary-foreground))'
+        },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
@@ -62,7 +66,8 @@ const config = {
         }
       },
       fontFamily: {
-        roobert: ['Roobert', 'Inter', 'system-ui', 'sans-serif']
+        roobert: ['Osiris', 'Inter', 'system-ui', 'sans-serif'],
+        brand: ['Osiris', 'Inter', 'system-ui', 'sans-serif']
       }
     }
   },
