@@ -21,10 +21,6 @@
     "bun.lock": true,
     "bun.lockb": true
   },
-  "files.associations": {
-    "*.css": "tailwindcss",
-    "*.scss": "tailwindcss"
-  },
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "typescript.preferences.preferTypeOnlyAutoImports": true,
   "typescript.preferences.autoImportFileExcludePatterns": [
