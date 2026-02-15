@@ -24,13 +24,13 @@ Minimal Express API app wired to shared monorepo configs.
 
 ## Environment Variables
 
-| Key | Required | Example | Notes |
-| --- | --- | --- | --- |
-| `API_PORT` | Yes | `8000` | API server port |
-| `NODE_ENV` | Yes | `dev` | Use `dev` or `prod` |
-| `DB_URL` | Yes | `mongodb+srv://user:pass@cluster.mongodb.net/tejadev?retryWrites=true&w=majority` | Set `NA` to skip DB connection |
-| `AXIOM_TOKEN` | No | `xaat-...` | Required only if you want to send logs to Axiom |
-| `AXIOM_DATASET` | No | `tejadev-api` | Axiom dataset name used for ingest |
+| Key             | Required | Example                                                                           | Notes                                           |
+| --------------- | -------- | --------------------------------------------------------------------------------- | ----------------------------------------------- |
+| `API_PORT`      | Yes      | `8000`                                                                            | API server port                                 |
+| `NODE_ENV`      | Yes      | `dev`                                                                             | Use `dev` or `prod`                             |
+| `DB_URL`        | Yes      | `mongodb+srv://user:pass@cluster.mongodb.net/tejadev?retryWrites=true&w=majority` | Set `NA` to skip DB connection                  |
+| `AXIOM_TOKEN`   | No       | `xaat-...`                                                                        | Required only if you want to send logs to Axiom |
+| `AXIOM_DATASET` | No       | `tejadev-api`                                                                     | Axiom dataset name used for ingest              |
 
 ## Troubleshooting
 
