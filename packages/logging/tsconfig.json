@@ -3,10 +3,10 @@
   "compilerOptions": {
     "rootDir": "./src",
     "outDir": "./dist",
-    "moduleResolution": "Bundler",
-    "types": ["node"],
-    "allowImportingTsExtensions": true
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": false
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["dist", "node_modules"]
 }
