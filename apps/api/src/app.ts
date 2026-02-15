@@ -13,6 +13,7 @@ import morgan from 'morgan'
 
 import { env } from './constants/env.ts'
 import error_handler from './middlewares/error-handler.ts'
+import { request_id_handler } from './middlewares/request-id.ts'
 import { success_handler } from './middlewares/success-handler.ts'
 import { slug_router } from './routes/slug.ts'
 import CustomError from './utils/CustomError.ts'
@@ -26,6 +27,7 @@ app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 app.use(fileUpload({ createParentPath: true }))
 
+app.use(request_id_handler)
 app.use(success_handler)
 
 app.get('/', async (_req: Request, res: Response) => {

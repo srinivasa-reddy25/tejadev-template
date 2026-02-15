@@ -15,6 +15,13 @@ Minimal Express API app wired to shared monorepo configs.
 - `GET /api/v1/health`
 - `POST /api/v1/slug`
 
+## Request ID
+
+- API accepts `x-request-id` header.
+- If missing, API generates one automatically.
+- Response always includes `x-request-id`.
+- Error responses also include `request_id` in JSON body.
+
 ## Environment Variables
 
 | Key | Required | Example | Notes |
@@ -22,12 +29,17 @@ Minimal Express API app wired to shared monorepo configs.
 | `API_PORT` | Yes | `8000` | API server port |
 | `NODE_ENV` | Yes | `dev` | Use `dev` or `prod` |
 | `DB_URL` | Yes | `mongodb+srv://user:pass@cluster.mongodb.net/tejadev?retryWrites=true&w=majority` | Set `NA` to skip DB connection |
+| `AXIOM_TOKEN` | No | `xaat-...` | Required only if you want to send logs to Axiom |
+| `AXIOM_DATASET` | No | `tejadev-api` | Axiom dataset name used for ingest |
 
 ## Troubleshooting
 
 - Startup is slow or exits before server starts:
   - Usually DB connection is failing.
   - Set `DB_URL=NA` to confirm server works without DB.
+- Axiom logs are not visible:
+  - Ensure both `AXIOM_TOKEN` and `AXIOM_DATASET` are set.
+  - Without these, logs fall back to console output.
 - Mongo Atlas connection fails:
   - Ensure DB user/password are correct.
   - Ensure your current IP is allowlisted in Atlas Network Access.

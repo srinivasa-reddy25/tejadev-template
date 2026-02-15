@@ -37,6 +37,13 @@ const baseConfig = [
         }
       ]
     }
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/consistent-type-definitions': 'off',
+      '@typescript-eslint/no-namespace': 'off'
+    }
   }
 ]
 

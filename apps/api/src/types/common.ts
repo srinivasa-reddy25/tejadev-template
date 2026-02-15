@@ -9,6 +9,7 @@ type TValidationError = {
 
 export type TErrorResponse = {
   message: string
+  request_id?: string
   status_code: number
   stack?: string
   developer_message?: string
