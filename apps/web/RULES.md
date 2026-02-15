@@ -24,6 +24,8 @@ Use `src` with this structure:
 3. Keep color/theme tokens in `src/app/globals.css`.
 4. Keep Tailwind token mapping in `tailwind.config.mjs`.
 5. Prefer classes like `bg-background`, `text-foreground`, `border-border`, `bg-primary`.
+6. Use `shadcn/ui` components from `src/components/ui` for base UI primitives.
+7. Keep shadcn config in `components.json` and keep `tailwind.cssVariables = true`.
 
 ## Data and API
 

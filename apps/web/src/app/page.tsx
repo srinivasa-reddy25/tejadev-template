@@ -1,6 +1,7 @@
 'use client'
 
 import { slugify } from '@tejadev/shared'
+import { Button } from '@/components/ui/button'
 import { env } from '@/constants/env'
 import { useHealth } from '@/hooks/api/health'
 
@@ -75,6 +76,12 @@ export default function HomePage() {
               API not reachable. Check `NEXT_PUBLIC_API_URL` and API server.
             </p>
           ) : null}
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Button>Default</Button>
+            <Button variant="secondary">Secondary</Button>
+            <Button variant="outline">Outline</Button>
+            <Button variant="destructive">Destructive</Button>
+          </div>
         </article>
       </section>
     </main>
