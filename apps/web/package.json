@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@tejadev/shared": "0.0.0",
+    "@tanstack/react-query": "^5.66.8",
+    "axios": "^1.8.4",
     "next": "^15.1.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

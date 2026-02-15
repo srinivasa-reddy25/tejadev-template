@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import { QueryProvider } from '@/providers/query-provider'
+
 import './globals.css'
 
 type TProps = {
@@ -9,7 +11,9 @@ type TProps = {
 export default function RootLayout({ children }: TProps) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   )
 }
