@@ -1,5 +1,5 @@
 import { slugify } from '@tejadev/shared'
-import { env } from '@/const/env'
+import { env } from '@/constants/env'
 
 export default function HomePage() {
   const slug = slugify(env.NEXT_PUBLIC_APP_NAME)

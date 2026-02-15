@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react'
 
+import '@/styles/global.css'
+
 type TProps = {
   children: ReactNode
 }
