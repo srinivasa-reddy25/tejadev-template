@@ -5,8 +5,8 @@
   "description": "Next.js web app for TejaDev monorepo template",
   "scripts": {
     "dev": "dotenv -e ../../.env -- next dev",
-    "build": "dotenv -e ../../.env -- next build",
-    "start": "dotenv -e ../../.env -- next start",
+    "build": "NODE_ENV=production dotenv -e ../../.env -- next build",
+    "start": "NODE_ENV=production dotenv -e ../../.env -- next start",
     "clean": "rm -rf .next",
     "lint": "eslint .",
     "typecheck": "tsc -p tsconfig.json --noEmit"
