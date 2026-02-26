@@ -40,6 +40,9 @@
   "devDependencies": {
     "@tejadev/eslint-config": "workspace:*",
     "@tejadev/typescript-config": "workspace:*",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "globals": "^15.15.0",
     "next": "^15.1.6",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1"

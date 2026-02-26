@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-import { buildQueryString } from '../lib/query-string.js'
+import { buildQueryString } from '../lib/query-string'
 
 type TAction = 'push' | 'replace'
 

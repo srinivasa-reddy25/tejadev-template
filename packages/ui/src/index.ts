@@ -1,16 +1,16 @@
-export { Button, buttonVariants } from './components/button.js'
+export { Button, buttonVariants } from './components/button'
+export type { TButtonProps } from './components/button'
 export {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from './components/dropdown-menu.js'
-export { Toaster, toast } from './components/sonner.js'
-export { cn } from './lib/utils.js'
-export { buildQueryString } from './lib/query-string.js'
-export { useCookie } from './hooks/use-cookie.js'
-export { useDebounce } from './hooks/use-debounce.js'
-export { useIntersectionObserver } from './hooks/use-intersection-observer.js'
-export { useOpenClose } from './hooks/use-open-close.js'
-export { useQueryParams } from './hooks/use-query-params.js'
-export type { TButtonProps } from './components/button.js'
+} from './components/dropdown-menu'
+export { toast, Toaster } from './components/sonner'
+export { useCookie } from './hooks/use-cookie'
+export { useDebounce } from './hooks/use-debounce'
+export { useIntersectionObserver } from './hooks/use-intersection-observer'
+export { useOpenClose } from './hooks/use-open-close'
+export { useQueryParams } from './hooks/use-query-params'
+export { buildQueryString } from './lib/query-string'
+export { cn } from './lib/utils'
