@@ -1,6 +1,7 @@
 'use client'
 
 import { slugify } from '@tejadev/shared'
+import { ModeToggle } from '@/components/mode-toggle'
 import { Button } from '@/components/ui/button'
 import { toast } from '@/components/ui/sonner'
 import { env } from '@/constants/env'
@@ -13,6 +14,10 @@ export default function HomePage() {
   return (
     <main className="min-h-screen w-full bg-background text-foreground">
       <section className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-8">
+        <div className="flex w-full justify-end">
+          <ModeToggle />
+        </div>
+
         <div className="rounded-2xl border border-border bg-secondary p-8">
           <h1 className="text-5xl font-extrabold tracking-tight text-primary">
             {env.NEXT_PUBLIC_APP_NAME}

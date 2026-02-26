@@ -1,6 +1,7 @@
 'use client'
 
 import type { CSSProperties } from 'react'
+import { useTheme } from 'next-themes'
 
 import {
   CircleCheckIcon,
@@ -12,6 +13,8 @@ import {
 import { Toaster as Sonner, toast, type ToasterProps } from 'sonner'
 
 const Toaster = ({ ...props }: ToasterProps) => {
+  const { theme = 'system' } = useTheme()
+
   return (
     <Sonner
       className="group"
@@ -39,7 +42,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           cancelButton: '!bg-accent !text-accent-foreground hover:!bg-accent/90'
         }
       }}
-      theme="light"
+      theme={theme as ToasterProps['theme']}
       {...props}
     />
   )

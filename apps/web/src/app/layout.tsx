@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 
+import { ThemeProvider } from '@/components/theme-provider'
 import { QueryProvider } from '@/providers/query-provider'
 import { ToasterProvider } from '@/providers/toaster-provider'
 
@@ -11,10 +12,12 @@ type TProps = {
 
 export default function RootLayout({ children }: TProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <QueryProvider>{children}</QueryProvider>
-        <ToasterProvider />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <QueryProvider>{children}</QueryProvider>
+          <ToasterProvider />
+        </ThemeProvider>
       </body>
     </html>
   )
