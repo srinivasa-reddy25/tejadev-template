@@ -12,9 +12,9 @@ type TProps = {
 
 export default function RootLayout({ children }: TProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html suppressHydrationWarning lang="en">
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider enableSystem attribute="class" defaultTheme="system">
           <QueryProvider>{children}</QueryProvider>
           <ToasterProvider />
         </ThemeProvider>

@@ -33,6 +33,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
           '--border-radius': 'var(--radius)'
         } as CSSProperties
       }
+      theme={theme as ToasterProps['theme']}
       toastOptions={{
         classNames: {
           title: 'text-primary',
@@ -42,7 +43,6 @@ const Toaster = ({ ...props }: ToasterProps) => {
           cancelButton: '!bg-accent !text-accent-foreground hover:!bg-accent/90'
         }
       }}
-      theme={theme as ToasterProps['theme']}
       {...props}
     />
   )
