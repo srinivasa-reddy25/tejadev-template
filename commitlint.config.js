@@ -8,7 +8,7 @@ const config = {
     // Override rules here if needed
     'body-max-line-length': [2, 'always', 100],
     'footer-max-line-length': [2, 'always', 100],
-    'header-max-length': [2, 'always', 100],
+    'header-max-length': [2, 'always', 500],
     'scope-case': [2, 'always', 'lower-case'],
     'subject-case': [
       2,

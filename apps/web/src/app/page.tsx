@@ -1,7 +1,8 @@
 'use client'
 
 import { slugify } from '@tejadev/shared'
-import { Button } from '@/components/ui/button'
+import { Button, toast } from '@tejadev/ui'
+import { ModeToggle } from '@/components/mode-toggle'
 import { env } from '@/constants/env'
 import { useHealth } from '@/hooks/api/health'
 
@@ -12,6 +13,10 @@ export default function HomePage() {
   return (
     <main className="min-h-screen w-full bg-background text-foreground">
       <section className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-8">
+        <div className="flex w-full justify-end">
+          <ModeToggle />
+        </div>
+
         <div className="rounded-2xl border border-border bg-secondary p-8">
           <h1 className="text-5xl font-extrabold tracking-tight text-primary">
             {env.NEXT_PUBLIC_APP_NAME}
@@ -81,6 +86,20 @@ export default function HomePage() {
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="destructive">Destructive</Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                toast('Toast is working', {
+                  description: 'Sonner is mounted at top-center.',
+                  action: {
+                    label: 'Undo',
+                    onClick: () => console.log('Undo')
+                  }
+                })
+              }}
+            >
+              Show Toast
+            </Button>
           </div>
         </article>
       </section>
