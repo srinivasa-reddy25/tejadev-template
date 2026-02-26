@@ -1,6 +1,6 @@
 'use client'
 
-import { Toaster } from '@/components/ui/sonner'
+import { Toaster } from '@tejadev/ui'
 
 export function ToasterProvider() {
   return <Toaster position="top-center" />

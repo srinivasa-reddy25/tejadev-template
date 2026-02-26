@@ -1,9 +1,8 @@
 'use client'
 
 import { slugify } from '@tejadev/shared'
+import { Button, toast } from '@tejadev/ui'
 import { ModeToggle } from '@/components/mode-toggle'
-import { Button } from '@/components/ui/button'
-import { toast } from '@/components/ui/sonner'
 import { env } from '@/constants/env'
 import { useHealth } from '@/hooks/api/health'
 
