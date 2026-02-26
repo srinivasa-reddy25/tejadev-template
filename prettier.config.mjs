@@ -10,7 +10,10 @@ const config = {
   tabWidth: 2,
   endOfLine: 'lf',
   bracketSpacing: true,
-  plugins: ['prettier-plugin-tailwindcss', '@ianvs/prettier-plugin-sort-imports'],
+  plugins: [
+    'prettier-plugin-tailwindcss',
+    '@ianvs/prettier-plugin-sort-imports'
+  ],
 
   overrides: [
     {

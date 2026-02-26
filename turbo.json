@@ -16,6 +16,12 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
+    "@tejadev/eslint-config#build": {
+      "outputs": []
+    },
+    "@tejadev/typescript-config#build": {
+      "outputs": []
+    },
     "lint": {
       "dependsOn": ["^lint"]
     },
