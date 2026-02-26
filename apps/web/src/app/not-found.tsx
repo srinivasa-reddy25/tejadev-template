@@ -50,8 +50,8 @@ export default function NotFound() {
         </p>
 
         <Link
-          href="/"
           className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-foreground px-8 py-4 text-sm font-bold uppercase tracking-widest text-background transition-transform duration-300 hover:scale-105 active:scale-95"
+          href="/"
         >
           <span className="relative z-10 flex items-center gap-2">
             Return home
@@ -63,10 +63,10 @@ export default function NotFound() {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
+                d="M17 8l4 4m0 0l-4 4m4-4H3"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={2}
-                d="M17 8l4 4m0 0l-4 4m4-4H3"
               />
             </svg>
           </span>
