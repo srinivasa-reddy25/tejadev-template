@@ -44,6 +44,44 @@ bun run dev
 - `bun run typecheck` - Run TypeScript checks across workspaces
 - `bun run format` - Format repo files with Prettier
 - `bun run ci:check` - Full local CI check (format, lint, typecheck, build)
+- `bun run docker:build` - Build all Docker images
+- `bun run docker:up` - Start containers (build + run)
+- `bun run docker:down` - Stop and remove running containers
+- `bun run docker:logs` - Stream container logs
+
+## Docker Setup
+
+This repo includes:
+
+- `apps/api/Dockerfile` for API container
+- `apps/web/Dockerfile` for Web container
+- `docker-compose.yml` to run API + Web + MongoDB together
+- `.dockerignore` to keep images clean and fast to build
+
+### Run with Docker
+
+```bash
+bun run docker:up
+```
+
+Open:
+
+- Web: `http://localhost:3000`
+- API: `http://localhost:8000`
+- MongoDB: `mongodb://localhost:27017`
+
+### Stop Docker
+
+```bash
+bun run docker:down
+```
+
+### Notes
+
+- By default, compose uses local Mongo container URL:
+  - `mongodb://mongo:27017/tejadev`
+- You can override env values using shell envs before running compose.
+- API and Web run using Bun inside containers.
 
 ## Smoke Checklist
 
