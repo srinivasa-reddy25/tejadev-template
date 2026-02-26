@@ -26,6 +26,8 @@ export const useIntersectionObserver = ({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
+        if (!entry) return
+
         if (entry.isIntersecting) {
           callbackRef.current()
         }
