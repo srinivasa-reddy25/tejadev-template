@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { QueryProvider } from '@/providers/query-provider'
+import { ToasterProvider } from '@/providers/toaster-provider'
 
 import './globals.css'
 
@@ -13,6 +14,7 @@ export default function RootLayout({ children }: TProps) {
     <html lang="en">
       <body>
         <QueryProvider>{children}</QueryProvider>
+        <ToasterProvider />
       </body>
     </html>
   )

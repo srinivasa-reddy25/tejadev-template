@@ -2,6 +2,7 @@
 
 import { slugify } from '@tejadev/shared'
 import { Button } from '@/components/ui/button'
+import { toast } from '@/components/ui/sonner'
 import { env } from '@/constants/env'
 import { useHealth } from '@/hooks/api/health'
 
@@ -81,6 +82,20 @@ export default function HomePage() {
             <Button variant="secondary">Secondary</Button>
             <Button variant="outline">Outline</Button>
             <Button variant="destructive">Destructive</Button>
+            <Button
+              variant="outline"
+              onClick={() => {
+                toast('Toast is working', {
+                  description: 'Sonner is mounted at top-center.',
+                  action: {
+                    label: 'Undo',
+                    onClick: () => console.log('Undo')
+                  }
+                })
+              }}
+            >
+              Show Toast
+            </Button>
           </div>
         </article>
       </section>
