@@ -9,6 +9,10 @@ Read this before writing or changing code in this monorepo.
 3. Keep env access centralized in each app via `src/constants/env.ts`.
 4. Prefer `type` over `interface` in regular source files.
 5. Use absolute alias imports where configured (`@/...`) for app source.
+6. Do not use TypeScript `enum`. Use `as const` arrays/objects and extract types.
+7. Preferred shared constant/type pattern:
+   - `export const X = ['a', 'b'] as const`
+   - `export type TX = (typeof X)[number]`
 
 ## Styling Rules (Web)
 
