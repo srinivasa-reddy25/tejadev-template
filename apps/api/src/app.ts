@@ -31,7 +31,7 @@ app.use(fileUpload({ createParentPath: true }))
 app.use(request_id_handler)
 app.use(success_handler)
 
-app.get('/', async (_req: Request, res: Response) => {
+app.get('/api/v1', async (_req: Request, res: Response) => {
   res.json({
     message: 'tejadev api is running - health check',
     data: {
