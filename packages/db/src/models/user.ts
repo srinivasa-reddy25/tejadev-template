@@ -8,8 +8,7 @@ export const user_schema = new Schema<TUser>(
       type: String,
       required: true,
       lowercase: true,
-      trim: true,
-      unique: true
+      trim: true
     },
     name: {
       type: String,
@@ -24,8 +23,7 @@ export const user_schema = new Schema<TUser>(
     firebase_uid: {
       type: String,
       required: true,
-      trim: true,
-      unique: true
+      trim: true
     },
     provider: {
       type: String,
