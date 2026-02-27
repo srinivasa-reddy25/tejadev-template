@@ -15,6 +15,7 @@ import { env } from './constants/env.ts'
 import error_handler from './middlewares/error-handler.ts'
 import { request_id_handler } from './middlewares/request-id.ts'
 import { success_handler } from './middlewares/success-handler.ts'
+import { auth_router } from './routes/auth.ts'
 import { slug_router } from './routes/slug.ts'
 import CustomError from './utils/CustomError.ts'
 
@@ -42,6 +43,7 @@ app.get('/', async (_req: Request, res: Response) => {
   })
 })
 
+app.use('/api/v1/auth', auth_router)
 app.use('/api/v1/slug', slug_router)
 
 app.all('*', (req: Request, _res: Response, next: NextFunction) => {
