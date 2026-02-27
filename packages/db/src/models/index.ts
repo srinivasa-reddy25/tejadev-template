@@ -7,9 +7,9 @@ import { user_model } from './user'
 export type TUserModel = Model<TUser>
 
 type TMg = {
-  user: TUserModel
+  User: TUserModel
 }
 
 export const mg: TMg = {
-  user: user_model
+  User: user_model
 }

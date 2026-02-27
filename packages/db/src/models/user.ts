@@ -32,9 +32,9 @@ export const user_schema = new Schema<TUser>(
       required: true,
       enum: AUTH_PROVIDERS
     },
-    is_email_verified: {
+    is_active: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   {
@@ -46,4 +46,4 @@ export const user_schema = new Schema<TUser>(
 user_schema.index({ email: 1 }, { unique: true })
 user_schema.index({ firebase_uid: 1 }, { unique: true })
 
-export const user_model = model<TUser>('User', user_schema, 'users')
+export const user_model = model<TUser>('User', user_schema)

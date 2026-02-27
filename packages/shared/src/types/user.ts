@@ -6,7 +6,7 @@ export type TUser = {
   profile_image?: string | null
   firebase_uid: string
   provider: TAuthProvider
-  is_email_verified: boolean
+  is_active: boolean
   createdAt?: Date
   updatedAt?: Date
 }
