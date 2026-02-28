@@ -158,7 +158,13 @@ export default function SignupPage() {
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-4">
-                    <Button className="w-full" type="button" variant="outline">
+                    <Button
+                      disabled
+                      className="w-full"
+                      title="Coming soon"
+                      type="button"
+                      variant="outline"
+                    >
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -168,7 +174,7 @@ export default function SignupPage() {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="sr-only">Sign up with Apple</span>
+                      <span className="sr-only">Apple signup coming soon</span>
                     </Button>
                     <Button
                       className="w-full"
@@ -188,7 +194,13 @@ export default function SignupPage() {
                       </svg>
                       <span className="sr-only">Sign up with Google</span>
                     </Button>
-                    <Button className="w-full" type="button" variant="outline">
+                    <Button
+                      disabled
+                      className="w-full"
+                      title="Coming soon"
+                      type="button"
+                      variant="outline"
+                    >
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -198,7 +210,7 @@ export default function SignupPage() {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="sr-only">Sign up with Meta</span>
+                      <span className="sr-only">Meta signup coming soon</span>
                     </Button>
                   </div>
                   <div className="text-center text-sm">

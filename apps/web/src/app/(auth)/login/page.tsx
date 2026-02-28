@@ -132,7 +132,13 @@ export default function LoginPage() {
                     </span>
                   </div>
                   <div className="grid grid-cols-3 gap-4">
-                    <Button className="w-full" type="button" variant="outline">
+                    <Button
+                      disabled
+                      className="w-full"
+                      title="Coming soon"
+                      type="button"
+                      variant="outline"
+                    >
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +148,7 @@ export default function LoginPage() {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="sr-only">Login with Apple</span>
+                      <span className="sr-only">Apple login coming soon</span>
                     </Button>
                     <Button
                       className="w-full"
@@ -162,7 +168,13 @@ export default function LoginPage() {
                       </svg>
                       <span className="sr-only">Login with Google</span>
                     </Button>
-                    <Button className="w-full" type="button" variant="outline">
+                    <Button
+                      disabled
+                      className="w-full"
+                      title="Coming soon"
+                      type="button"
+                      variant="outline"
+                    >
                       <svg
                         viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg"
@@ -172,7 +184,7 @@ export default function LoginPage() {
                           fill="currentColor"
                         />
                       </svg>
-                      <span className="sr-only">Login with Meta</span>
+                      <span className="sr-only">Meta login coming soon</span>
                     </Button>
                   </div>
                   <div className="text-center text-sm">
