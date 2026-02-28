@@ -20,3 +20,4 @@ yarn.lock
 
 # Generated files
 *.generated.*
+**/next-env.d.ts
