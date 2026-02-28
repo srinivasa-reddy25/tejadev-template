@@ -79,15 +79,15 @@ All apps load env from the root `.env` file via `dotenv-cli`. Copy `.env.example
 
 Key variables (see `.env.example` for full list):
 
-| Variable | Used by |
-|---|---|
-| `API_PORT` | API server port (default 8000) |
-| `DB_URL` | MongoDB connection string |
-| `NODE_ENV` | Environment (`dev` / `production`) |
-| `FIREBASE_CONFIG_PATH` | Path to Firebase Admin service account JSON |
-| `NEXT_PUBLIC_API_URL` | API base URL for web client |
-| `NEXT_PUBLIC_FIREBASE_*` | Firebase client SDK config for web |
-| `AXIOM_TOKEN` / `AXIOM_DATASET` | Logging (optional) |
+| Variable                        | Used by                                     |
+| ------------------------------- | ------------------------------------------- |
+| `API_PORT`                      | API server port (default 8000)              |
+| `DB_URL`                        | MongoDB connection string                   |
+| `NODE_ENV`                      | Environment (`dev` / `production`)          |
+| `FIREBASE_CONFIG_PATH`          | Path to Firebase Admin service account JSON |
+| `NEXT_PUBLIC_API_URL`           | API base URL for web client                 |
+| `NEXT_PUBLIC_FIREBASE_*`        | Firebase client SDK config for web          |
+| `AXIOM_TOKEN` / `AXIOM_DATASET` | Logging (optional)                          |
 
 ---
 
@@ -236,6 +236,7 @@ Allowed types: `feat`, `fix`, `chore`, `docs`, `style`, `refactor`, `perf`, `tes
 - No sentence-case, start-case, pascal-case, or upper-case subjects
 
 Examples:
+
 ```
 feat(auth): add google login route
 fix(api): handle missing request_id in error payload

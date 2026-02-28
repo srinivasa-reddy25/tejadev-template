@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   updateProfile,
@@ -51,6 +52,14 @@ export const resendVerificationEmail = async (): Promise<void> => {
     const currentUser = auth.currentUser
     if (!currentUser) throw new Error('No signed-in user')
     await sendEmailVerification(currentUser)
+  } catch (error) {
+    throw new AuthenticationError(error)
+  }
+}
+
+export const resetPassword = async (email: string): Promise<void> => {
+  try {
+    await sendPasswordResetEmail(auth, email)
   } catch (error) {
     throw new AuthenticationError(error)
   }

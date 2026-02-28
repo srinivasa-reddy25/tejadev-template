@@ -132,6 +132,15 @@ export default function LoginPage() {
                 />
               </label>
 
+              <div className="flex justify-end">
+                <Link
+                  className="text-xs text-muted-foreground underline hover:text-foreground"
+                  href="/forgot-password"
+                >
+                  Forgot password?
+                </Link>
+              </div>
+
               <Button disabled={isSubmitting} type="submit">
                 {isSubmitting ? 'Please wait...' : 'Login'}
               </Button>
