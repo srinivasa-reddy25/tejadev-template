@@ -7,6 +7,7 @@ type TEnv = {
   firebaseStorageBucket: string
   firebaseMessagingSenderId: string
   firebaseAppId: string
+  googleClientId: string
 }
 
 export const env: TEnv = {
@@ -19,5 +20,6 @@ export const env: TEnv = {
     process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ?? 'NA',
   firebaseMessagingSenderId:
     process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID ?? 'NA',
-  firebaseAppId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? 'NA'
+  firebaseAppId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID ?? 'NA',
+  googleClientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? 'NA'
 }

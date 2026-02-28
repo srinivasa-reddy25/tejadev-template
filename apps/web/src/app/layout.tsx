@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { AuthProvider } from '@/providers/auth-provider'
+import { OneTapProvider } from '@/providers/one-tap-provider'
 import { QueryProvider } from '@/providers/query-provider'
 import { ToasterProvider } from '@/providers/toaster-provider'
 
@@ -17,7 +18,10 @@ export default function RootLayout({ children }: TProps) {
       <body>
         <ThemeProvider enableSystem attribute="class" defaultTheme="system">
           <QueryProvider>
-            <AuthProvider>{children}</AuthProvider>
+            <AuthProvider>
+              <OneTapProvider />
+              {children}
+            </AuthProvider>
           </QueryProvider>
           <ToasterProvider />
         </ThemeProvider>

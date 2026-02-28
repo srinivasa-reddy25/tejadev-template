@@ -7,6 +7,7 @@ import { AuthenticationError } from './errors'
 export * from './email-password'
 export * from './errors'
 export * from './google'
+export * from './one-tap'
 
 export const signOut = async (): Promise<void> => {
   try {
