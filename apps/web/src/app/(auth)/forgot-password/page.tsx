@@ -4,9 +4,7 @@ import type { FormEvent } from 'react'
 import { useState } from 'react'
 import Link from 'next/link'
 
-import { Button, toast } from '@tejadev/ui'
-import { ModeToggle } from '@/components/mode-toggle'
-import { env } from '@/constants/env'
+import { Button, Card, CardContent, Input, Label, toast } from '@tejadev/ui'
 import { resetPassword } from '@/services/auth'
 
 const getErrorMessage = (error: unknown): string => {
@@ -16,7 +14,6 @@ const getErrorMessage = (error: unknown): string => {
       return errorMessage
     }
   }
-
   return 'Something went wrong. Please try again.'
 }
 
@@ -28,7 +25,6 @@ export default function ForgotPasswordPage() {
   const onSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
     setIsSubmitting(true)
-
     try {
       await resetPassword(email)
       setResetSent(true)
@@ -42,73 +38,77 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <main className="min-h-screen bg-background p-6 text-foreground md:p-10">
-      <div className="mx-auto flex max-w-4xl flex-col gap-6">
-        <header className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-primary">
-            {env.NEXT_PUBLIC_APP_NAME}
-          </h1>
-          <ModeToggle />
-        </header>
-
-        <section className="grid items-stretch gap-5 md:grid-cols-2">
-          <article className="rounded-2xl border border-border bg-primary p-6 text-primary-foreground">
-            <p className="text-sm uppercase tracking-[0.2em]">Authentication</p>
-            <h2 className="mt-3 text-4xl font-extrabold">Reset password</h2>
-            <p className="mt-3 text-sm opacity-90">
-              Enter your email and we&apos;ll send you a link to reset your
-              password.
-            </p>
-          </article>
-
-          <article className="rounded-2xl border border-border bg-card p-6">
-            {resetSent ? (
-              <div className="flex flex-col gap-4">
-                <div className="flex flex-col gap-1">
-                  <p className="font-semibold text-foreground">
-                    Check your inbox
-                  </p>
-                  <p className="text-sm text-muted-foreground">
-                    We sent a password reset link to{' '}
-                    <span className="font-medium text-foreground">{email}</span>
-                    . Click it to set a new password, then come back to log in.
-                  </p>
-                </div>
-                <Link href="/login">
-                  <Button className="w-full" type="button" variant="secondary">
-                    Back to login
-                  </Button>
-                </Link>
-              </div>
-            ) : (
-              <form className="flex flex-col gap-3" onSubmit={onSubmit}>
-                <label className="flex flex-col gap-1">
-                  <span className="text-sm text-muted-foreground">Email</span>
-                  <input
-                    required
-                    className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
-                    placeholder="john@site.com"
-                    type="email"
-                    value={email}
-                    onChange={(event) => setEmail(event.target.value)}
-                  />
-                </label>
-
-                <Button disabled={isSubmitting} type="submit">
-                  {isSubmitting ? 'Sending...' : 'Send reset link'}
-                </Button>
-
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Remember your password?{' '}
-                  <Link className="text-primary underline" href="/login">
-                    Login
+    <div className="flex min-h-svh flex-col items-center justify-center bg-muted p-6 md:p-10">
+      <div className="w-full max-w-sm">
+        <div className="flex flex-col gap-6">
+          <Card>
+            <CardContent className="p-6 md:p-8">
+              {resetSent ? (
+                <div className="flex flex-col gap-6">
+                  <div className="flex flex-col items-center text-center">
+                    <h1 className="text-2xl font-bold">Check your inbox</h1>
+                    <p className="text-balance text-muted-foreground">
+                      We sent a password reset link to{' '}
+                      <span className="font-medium text-foreground">
+                        {email}
+                      </span>
+                      . Click it to set a new password, then come back to log
+                      in.
+                    </p>
+                  </div>
+                  <Link href="/login">
+                    <Button className="w-full" type="button" variant="outline">
+                      Back to login
+                    </Button>
                   </Link>
-                </p>
-              </form>
-            )}
-          </article>
-        </section>
+                </div>
+              ) : (
+                <form className="flex flex-col gap-6" onSubmit={onSubmit}>
+                  <div className="flex flex-col items-center text-center">
+                    <h1 className="text-2xl font-bold">
+                      Forgot your password?
+                    </h1>
+                    <p className="text-balance text-muted-foreground">
+                      Enter your email and we&apos;ll send you a reset link.
+                    </p>
+                  </div>
+                  <div className="grid gap-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      required
+                      id="email"
+                      placeholder="m@example.com"
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                    />
+                  </div>
+                  <Button
+                    className="w-full"
+                    disabled={isSubmitting}
+                    type="submit"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send reset link'}
+                  </Button>
+                  <div className="text-center text-sm">
+                    Remember your password?{' '}
+                    <Link
+                      className="underline underline-offset-4"
+                      href="/login"
+                    >
+                      Back to login
+                    </Link>
+                  </div>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+          <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+            By clicking continue, you agree to our{' '}
+            <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   )
 }

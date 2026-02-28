@@ -22,6 +22,8 @@ Read this before writing or changing code in this monorepo.
    - `bg-background`, `text-foreground`, `border-border`, `bg-primary`, etc.
 4. Put global tokens in `apps/web/src/app/globals.css`.
 5. Keep Tailwind theme mappings in `apps/web/tailwind.config.mjs`.
+6. Put very common/shared UI primitives in `packages/ui` and import via `@tejadev/ui` from apps.
+7. Keep app-local components for feature-specific composition only.
 
 ## Naming Rules (Web)
 
