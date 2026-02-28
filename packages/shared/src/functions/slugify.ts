@@ -1,11 +1,8 @@
-export type SlugifyOptions = {
-  lowercase?: boolean
-  separator?: '-' | '_'
-}
+import type { TSlugifyOptions } from '../types/string.js'
 
 export const slugify = (
   value: string,
-  options: SlugifyOptions = {}
+  options: TSlugifyOptions = {}
 ): string => {
   const separator = options.separator ?? '-'
   const normalized = value

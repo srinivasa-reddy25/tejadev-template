@@ -39,7 +39,9 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response: AxiosResponse) => response.data,
   (error: AxiosError<{ message?: string }>) => {
-    return Promise.reject(error?.response?.data ?? error)
+    const data = error?.response?.data ?? error
+    const status = error?.response?.status
+    return Promise.reject(status != null ? { ...data, status } : data)
   }
 )
 
