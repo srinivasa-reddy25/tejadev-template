@@ -1,6 +1,9 @@
 import {
   createUserWithEmailAndPassword,
+  sendEmailVerification,
   signInWithEmailAndPassword,
+  signOut,
+  updateProfile,
   type UserCredential
 } from 'firebase/auth'
 
@@ -26,15 +29,28 @@ export const signInWithEmailPassword = async (
 
 export const signUpWithEmailPassword = async (
   email: string,
-  password: string
-): Promise<UserCredential> => {
+  password: string,
+  name: string
+): Promise<void> => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     )
-    return userCredential
+    await updateProfile(userCredential.user, { displayName: name })
+    await sendEmailVerification(userCredential.user)
+    await signOut(auth)
+  } catch (error) {
+    throw new AuthenticationError(error)
+  }
+}
+
+export const resendVerificationEmail = async (): Promise<void> => {
+  try {
+    const currentUser = auth.currentUser
+    if (!currentUser) throw new Error('No signed-in user')
+    await sendEmailVerification(currentUser)
   } catch (error) {
     throw new AuthenticationError(error)
   }

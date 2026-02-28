@@ -55,6 +55,15 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const syncUser = useCallback(
     async (firebaseUser: FirebaseUser) => {
+      // Block unverified email/password users — no DB call until verified
+      const isPasswordProvider = firebaseUser.providerData.some(
+        (p) => p.providerId === 'password'
+      )
+      if (isPasswordProvider && !firebaseUser.emailVerified) {
+        setUser(null)
+        return
+      }
+
       const token = await getIdToken(firebaseUser, true)
 
       if (!token) {
@@ -65,7 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
       try {
         const userResponse: { message: string; data: TAuthUser } =
-          await api.post('/auth/login')
+          await api.post('/auth/sync')
         setUser(userResponse.data)
         setAuthCookie()
       } catch {

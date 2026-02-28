@@ -8,7 +8,6 @@ import { useRouter } from 'next/navigation'
 import { Button, toast } from '@tejadev/ui'
 import { ModeToggle } from '@/components/mode-toggle'
 import { env } from '@/constants/env'
-import { useGoogleAuth, useSignup } from '@/hooks/api/auth'
 import { signInWithGooglePopup, signUpWithEmailPassword } from '@/services/auth'
 
 const getErrorMessage = (error: unknown): string => {
@@ -24,13 +23,12 @@ const getErrorMessage = (error: unknown): string => {
 
 export default function SignupPage() {
   const router = useRouter()
-  const { mutateAsync: signup } = useSignup()
-  const { mutateAsync: googleAuth } = useGoogleAuth()
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [verificationSent, setVerificationSent] = useState(false)
 
   const setAuthCookie = () => {
     document.cookie = 'tdv_auth=1; Path=/; Max-Age=604800; SameSite=Lax'
@@ -41,13 +39,8 @@ export default function SignupPage() {
     setIsSubmitting(true)
 
     try {
-      await signUpWithEmailPassword(email, password)
-      await signup({ name })
-      setAuthCookie()
-      toast('Account created', {
-        description: 'Signup successful. You are now logged in.'
-      })
-      router.push('/home')
+      await signUpWithEmailPassword(email, password, name)
+      setVerificationSent(true)
     } catch (error) {
       toast.error('Signup failed', {
         description: getErrorMessage(error)
@@ -62,7 +55,6 @@ export default function SignupPage() {
 
     try {
       await signInWithGooglePopup()
-      await googleAuth()
       setAuthCookie()
       toast('Signed in with Google', {
         description: 'Google authentication successful.'
@@ -97,67 +89,95 @@ export default function SignupPage() {
           </article>
 
           <article className="rounded-2xl border border-border bg-card p-6">
-            <form className="flex flex-col gap-3" onSubmit={onSignup}>
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-muted-foreground">Name</span>
-                <input
-                  required
-                  className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
-                  placeholder="John Doe"
-                  type="text"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                />
-              </label>
+            {verificationSent ? (
+              <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-1">
+                  <p className="font-semibold text-foreground">
+                    Check your inbox
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    We sent a verification link to{' '}
+                    <span className="font-medium text-foreground">{email}</span>
+                    . Click it to activate your account, then come back to log
+                    in.
+                  </p>
+                </div>
+                <Button
+                  className="w-full"
+                  type="button"
+                  variant="secondary"
+                  onClick={() => router.push('/login')}
+                >
+                  Go to login
+                </Button>
+              </div>
+            ) : (
+              <>
+                <form className="flex flex-col gap-3" onSubmit={onSignup}>
+                  <label className="flex flex-col gap-1">
+                    <span className="text-sm text-muted-foreground">Name</span>
+                    <input
+                      required
+                      className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
+                      placeholder="John Doe"
+                      type="text"
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                    />
+                  </label>
 
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-muted-foreground">Email</span>
-                <input
-                  required
-                  className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
-                  placeholder="john@site.com"
-                  type="email"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                />
-              </label>
+                  <label className="flex flex-col gap-1">
+                    <span className="text-sm text-muted-foreground">Email</span>
+                    <input
+                      required
+                      className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
+                      placeholder="john@site.com"
+                      type="email"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
+                    />
+                  </label>
 
-              <label className="flex flex-col gap-1">
-                <span className="text-sm text-muted-foreground">Password</span>
-                <input
-                  required
-                  className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
-                  minLength={6}
-                  placeholder="Minimum 6 characters"
-                  type="password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-              </label>
+                  <label className="flex flex-col gap-1">
+                    <span className="text-sm text-muted-foreground">
+                      Password
+                    </span>
+                    <input
+                      required
+                      className="rounded-md border border-border bg-background px-3 py-2 text-sm outline-none ring-accent focus:ring-2"
+                      minLength={6}
+                      placeholder="Minimum 6 characters"
+                      type="password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
+                    />
+                  </label>
 
-              <Button disabled={isSubmitting} type="submit">
-                {isSubmitting ? 'Please wait...' : 'Create account'}
-              </Button>
-            </form>
+                  <Button disabled={isSubmitting} type="submit">
+                    {isSubmitting ? 'Please wait...' : 'Create account'}
+                  </Button>
+                </form>
 
-            <div className="my-4 h-px bg-border" />
+                <div className="my-4 h-px bg-border" />
 
-            <Button
-              className="w-full"
-              disabled={isSubmitting}
-              type="button"
-              variant="secondary"
-              onClick={onGoogleAuth}
-            >
-              Continue with Google
-            </Button>
+                <Button
+                  className="w-full"
+                  disabled={isSubmitting}
+                  type="button"
+                  variant="secondary"
+                  onClick={onGoogleAuth}
+                >
+                  Continue with Google
+                </Button>
 
-            <p className="mt-5 text-sm text-muted-foreground">
-              Already have an account?{' '}
-              <Link className="text-primary underline" href="/login">
-                Login
-              </Link>
-            </p>
+                <p className="mt-5 text-sm text-muted-foreground">
+                  Already have an account?{' '}
+                  <Link className="text-primary underline" href="/login">
+                    Login
+                  </Link>
+                </p>
+              </>
+            )}
           </article>
         </section>
       </div>

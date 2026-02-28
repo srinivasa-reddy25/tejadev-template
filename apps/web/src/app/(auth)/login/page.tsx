@@ -8,8 +8,12 @@ import { useRouter } from 'next/navigation'
 import { Button, toast } from '@tejadev/ui'
 import { ModeToggle } from '@/components/mode-toggle'
 import { env } from '@/constants/env'
-import { useGoogleAuth } from '@/hooks/api/auth'
-import { signInWithEmailPassword, signInWithGooglePopup } from '@/services/auth'
+import {
+  signInWithEmailPassword,
+  signInWithGooglePopup,
+  signOut
+} from '@/services/auth'
+import { auth } from '@/services/firebase'
 
 const getErrorMessage = (error: unknown): string => {
   if (typeof error === 'object' && error !== null) {
@@ -24,7 +28,6 @@ const getErrorMessage = (error: unknown): string => {
 
 export default function LoginPage() {
   const router = useRouter()
-  const { mutateAsync: googleAuth } = useGoogleAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -39,6 +42,17 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailPassword(email, password)
+
+      const currentUser = auth.currentUser
+      if (currentUser && !currentUser.emailVerified) {
+        await signOut()
+        toast.warning('Email not verified', {
+          description:
+            'Please verify your email before logging in. Check your inbox for the verification link.'
+        })
+        return
+      }
+
       setAuthCookie()
       toast('Welcome back', {
         description: 'Login successful.'
@@ -58,7 +72,6 @@ export default function LoginPage() {
 
     try {
       await signInWithGooglePopup()
-      await googleAuth()
       setAuthCookie()
       toast('Signed in with Google', {
         description: 'Google authentication successful.'

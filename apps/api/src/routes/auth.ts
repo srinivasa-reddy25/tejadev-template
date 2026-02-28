@@ -1,13 +1,9 @@
 import { Router } from 'express'
 
-import { google_auth } from '../controllers/auth/google.ts'
-import { login } from '../controllers/auth/login.ts'
-import { signup } from '../controllers/auth/signup.ts'
+import { sync } from '../controllers/auth/sync.ts'
 
 const router = Router()
 
-router.post('/signup', signup)
-router.post('/login', login)
-router.post('/google', google_auth)
+router.post('/sync', sync)
 
 export { router as auth_router }

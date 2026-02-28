@@ -19,36 +19,12 @@ type TAuthResponse = {
   data: TAuthUser
 }
 
-type TSignupPayload = {
-  name: string
+const postSync = (): Promise<TAuthResponse> => {
+  return api.post('/auth/sync')
 }
 
-const postSignup = (payload: TSignupPayload): Promise<TAuthResponse> => {
-  return api.post('/auth/signup', payload)
-}
-
-const postLogin = (): Promise<TAuthResponse> => {
-  return api.post('/auth/login')
-}
-
-const postGoogle = (): Promise<TAuthResponse> => {
-  return api.post('/auth/google')
-}
-
-export const useSignup = () => {
+export const useSync = () => {
   return useMutation({
-    mutationFn: postSignup
-  })
-}
-
-export const useLogin = () => {
-  return useMutation({
-    mutationFn: postLogin
-  })
-}
-
-export const useGoogleAuth = () => {
-  return useMutation({
-    mutationFn: postGoogle
+    mutationFn: postSync
   })
 }
