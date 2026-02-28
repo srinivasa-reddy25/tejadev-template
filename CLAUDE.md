@@ -164,7 +164,9 @@ src/
 - Use token classes: `bg-background`, `text-foreground`, `border-border`, `bg-primary`, etc.
 - Global tokens live in `src/app/globals.css`
 - Tailwind theme mappings in `tailwind.config.mjs`
-- Use shadcn/ui components from `src/components/ui`; keep `tailwind.cssVariables = true` in `components.json`
+- Place shared/common UI primitives in `packages/ui` and import them from `@tejadev/ui` in apps
+- Keep app-local `src/components` for feature-specific compositions only
+- Keep `tailwind.cssVariables = true` in `components.json`
 
 ### Data Fetching
 
