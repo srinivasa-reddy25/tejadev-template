@@ -43,6 +43,7 @@ Use `src` with this structure:
 1. Use camelCase for function names in web code.
 2. Use camelCase for hook names (`useXxx`), for example `useHealth`.
 3. Do not use snake_case for web functions/hooks.
+4. Do not use TypeScript `enum`; use shared `as const` constants + extracted `type`.
 
 ## Process
 

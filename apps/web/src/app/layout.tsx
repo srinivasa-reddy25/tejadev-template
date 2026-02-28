@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { ThemeProvider } from '@/components/theme-provider'
+import { AuthProvider } from '@/providers/auth-provider'
 import { QueryProvider } from '@/providers/query-provider'
 import { ToasterProvider } from '@/providers/toaster-provider'
 
@@ -15,7 +16,9 @@ export default function RootLayout({ children }: TProps) {
     <html suppressHydrationWarning lang="en">
       <body>
         <ThemeProvider enableSystem attribute="class" defaultTheme="system">
-          <QueryProvider>{children}</QueryProvider>
+          <QueryProvider>
+            <AuthProvider>{children}</AuthProvider>
+          </QueryProvider>
           <ToasterProvider />
         </ThemeProvider>
       </body>
