@@ -1,8 +1,8 @@
 import eslint from '@eslint/js'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import tseslint from 'typescript-eslint'
-import turboPlugin from 'eslint-plugin-turbo'
 import prettierPlugin from 'eslint-plugin-prettier'
+import turboPlugin from 'eslint-plugin-turbo'
+import tseslint from 'typescript-eslint'
 
 const baseConfig = [
   {

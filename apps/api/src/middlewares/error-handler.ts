@@ -63,11 +63,12 @@ const send_error_as_response = (
   req: Request,
   res: Response
 ): void => {
+  const stack_for_log = err.stack
+
   const error_response: TErrorResponse = {
     message: err.message || 'Unknown error occurred',
     request_id: req.request_id,
     status_code: err.status_code || 500,
-    stack: env.node_env === 'prod' ? undefined : err.stack,
     validation_error: env.node_env === 'prod' ? undefined : err.validation_error
   }
 
@@ -100,7 +101,7 @@ const send_error_as_response = (
           validation_error: error_response.validation_error
         }
       },
-      stack: error_response.stack,
+      stack: stack_for_log,
       device_info: env.node_env === 'prod' ? device_info : undefined
     }
   })

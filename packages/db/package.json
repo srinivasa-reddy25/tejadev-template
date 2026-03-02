@@ -22,6 +22,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@tejadev/shared": "workspace:*",
     "colors": "^1.4.0",
     "mongoose": "^8.10.1"
   },

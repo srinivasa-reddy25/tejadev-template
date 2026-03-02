@@ -1,13 +1,22 @@
-import { slugify } from '@tejadev/shared'
-import { env } from '@/const/env'
+'use client'
 
-export default function HomePage() {
-  const slug = slugify(env.NEXT_PUBLIC_APP_NAME)
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+
+import { useAuth } from '@/providers/auth-provider'
+
+export default function RootPage() {
+  const router = useRouter()
+  const { user, isLoading } = useAuth()
+
+  useEffect(() => {
+    if (isLoading) return
+    router.replace(user ? '/home' : '/login')
+  }, [isLoading, router, user])
 
   return (
-    <main style={{ padding: 24, fontFamily: 'sans-serif' }}>
-      <h1>{env.NEXT_PUBLIC_APP_NAME}</h1>
-      <p>Slug from shared package: {slug}</p>
+    <main className="flex min-h-screen items-center justify-center bg-background text-foreground">
+      <p className="text-base text-muted-foreground">Redirecting...</p>
     </main>
   )
 }
