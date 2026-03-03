@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import type { Metadata } from 'next'
 
 import { ThemeProvider } from '@/components/theme-provider'
 import { AuthProvider } from '@/providers/auth-provider'
@@ -7,6 +8,14 @@ import { QueryProvider } from '@/providers/query-provider'
 import { ToasterProvider } from '@/providers/toaster-provider'
 
 import './globals.css'
+
+export const metadata: Metadata = {
+  title: {
+    template: '%s | TejaDev',
+    default: 'TejaDev'
+  },
+  description: 'Full-stack monorepo template — auth, DB, UI, and tooling done.'
+}
 
 type TProps = {
   children: ReactNode

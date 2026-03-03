@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 
 import { env } from '@/constants/env'
@@ -26,17 +27,20 @@ declare global {
   }
 }
 
+const ALLOWED_PATHS = ['/', '/login', '/signup']
+
 export function OneTapProvider() {
   const { user } = useAuth()
+  const pathname = usePathname()
+  const isAllowedPath = ALLOWED_PATHS.includes(pathname)
 
   useEffect(() => {
-    if (user) {
+    if (user || !isAllowedPath) {
       window.google?.accounts.id.cancel()
+      return
     }
-  }, [user])
 
-  const initOneTap = () => {
-    if (!window.google?.accounts?.id || user) return
+    if (!window.google?.accounts?.id) return
 
     window.google.accounts.id.initialize({
       client_id: env.googleClientId,
@@ -44,7 +48,18 @@ export function OneTapProvider() {
         await signInWithOneTap(credential)
       }
     })
+    window.google.accounts.id.prompt()
+  }, [pathname, user, isAllowedPath])
 
+  const initOneTap = () => {
+    if (!window.google?.accounts?.id || user || !isAllowedPath) return
+
+    window.google.accounts.id.initialize({
+      client_id: env.googleClientId,
+      callback: async ({ credential }) => {
+        await signInWithOneTap(credential)
+      }
+    })
     window.google.accounts.id.prompt()
   }
 
