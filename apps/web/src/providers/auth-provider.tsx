@@ -16,6 +16,7 @@ import {
   type User as FirebaseUser
 } from 'firebase/auth'
 
+import { AUTH_COOKIE_NAME } from '@/constants/cookies'
 import type { TAuthUser } from '@/hooks/api/auth'
 import { api, setAccessTokenGetter } from '@/lib/api'
 import { signOut as authSignOut } from '@/services/auth'
@@ -28,7 +29,6 @@ type TAuthContextType = {
 }
 
 const AuthContext = createContext<TAuthContextType | undefined>(undefined)
-const AUTH_COOKIE_NAME = 'tdv_auth'
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter()

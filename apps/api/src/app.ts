@@ -1,8 +1,10 @@
 import { createServer } from 'http'
 import type { NextFunction, Request, Response } from 'express'
 import express, { json, urlencoded } from 'express'
+import { rateLimit } from 'express-rate-limit'
 
 import cors from 'cors'
+import helmet from 'helmet'
 
 import 'express-async-errors'
 
@@ -22,10 +24,20 @@ import CustomError from './utils/CustomError.ts'
 const app = express()
 const httpServer = createServer(app)
 
+const rate_limiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 100,
+  standardHeaders: 'draft-8',
+  legacyHeaders: false,
+  message: { message: 'Too many requests, please try again later.' }
+})
+
+app.use(helmet())
 app.use(cors())
+app.use(rate_limiter)
 app.use(json())
 app.use(urlencoded({ extended: true }))
-app.use(morgan('dev'))
+app.use(morgan(env.node_env === 'prod' ? 'combined' : 'dev'))
 app.use(fileUpload({ createParentPath: true }))
 
 app.use(request_id_handler)

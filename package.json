@@ -61,6 +61,8 @@
     "rollup": "npm:@rollup/wasm-node"
   },
   "dependencies": {
+    "express-rate-limit": "^8.2.1",
+    "helmet": "^8.1.0",
     "motion": "^12.34.4"
   }
 }
