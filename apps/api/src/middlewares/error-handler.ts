@@ -5,7 +5,7 @@ import { ZodError } from 'zod'
 import { generateErrorMessage } from 'zod-error'
 
 import { env } from '../constants/env.ts'
-import type { TErrorResponse } from '../types/common.ts'
+import type { TErrorResponse, TInternalError } from '../types/common.ts'
 import CustomError from '../utils/CustomError.ts'
 import { extract_user_agent_info } from '../utils/functions.ts'
 
@@ -15,19 +15,26 @@ const error_handler = (
   res: Response,
   _next: NextFunction
 ): void => {
-  let custom_error: TErrorResponse = err as TErrorResponse
+  let internal_error: TInternalError
 
   if (err instanceof ZodError) {
-    custom_error = { ...handle_zod_error(err), stack: err.stack }
+    internal_error = { ...handle_zod_error(err), stack: err.stack }
   } else if (err instanceof CustomError) {
-    custom_error = {
+    internal_error = {
       message: err.message,
       status_code: err.status_code,
       stack: err.stack
     }
+  } else {
+    internal_error = {
+      message: err.message || 'Unknown error occurred',
+      status_code: 500,
+      stack: err.stack,
+      developer_message: err.message
+    }
   }
 
-  send_error_as_response(custom_error, req, res)
+  send_error_as_response(internal_error, req, res)
 }
 
 const handle_zod_error = (err: ZodError): TErrorResponse => {
@@ -59,7 +66,7 @@ const handle_zod_error = (err: ZodError): TErrorResponse => {
 }
 
 const send_error_as_response = (
-  err: TErrorResponse,
+  err: TInternalError,
   req: Request,
   res: Response
 ): void => {
