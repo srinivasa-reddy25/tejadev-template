@@ -43,14 +43,20 @@ app.use(fileUpload({ createParentPath: true }))
 app.use(request_id_handler)
 app.use(success_handler)
 
-app.get('/api/v1', async (_req: Request, res: Response) => {
+app.get('/api/v1', (_req: Request, res: Response) => {
+  const mem = process.memoryUsage()
   res.json({
-    message: 'tejadev api is running - health check',
+    message: 'tejadev api is running',
     data: {
+      status: 'ok',
       environment: env.node_env,
-      uptime: Math.floor(process.uptime()),
+      uptime_seconds: Math.floor(process.uptime()),
       db_status: get_db_status(),
-      timestamp: `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
+      memory_mb: {
+        heap_used: Math.round(mem.heapUsed / 1024 / 1024),
+        heap_total: Math.round(mem.heapTotal / 1024 / 1024)
+      },
+      timestamp: new Date().toISOString()
     }
   })
 })

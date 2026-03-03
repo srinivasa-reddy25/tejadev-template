@@ -16,6 +16,7 @@ import {
   type User as FirebaseUser
 } from 'firebase/auth'
 
+import type { TApiResponse } from '@tejadev/shared'
 import { AUTH_COOKIE_NAME } from '@/constants/cookies'
 import type { TAuthUser } from '@/hooks/api/auth'
 import { api, setAccessTokenGetter } from '@/lib/api'
@@ -73,7 +74,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
 
       try {
-        const userResponse: { message: string; data: TAuthUser } =
+        const userResponse: TApiResponse<TAuthUser> =
           await api.post('/auth/sync')
         setUser(userResponse.data)
         setAuthCookie()
