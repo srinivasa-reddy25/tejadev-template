@@ -65,12 +65,12 @@ export function ModeToggle({
   return (
     <button
       ref={buttonRef}
-      onClick={toggleTheme}
       className={cn(
         'relative flex size-9 items-center justify-center rounded-md border border-border',
         className
       )}
       {...props}
+      onClick={toggleTheme}
     >
       {isDark ? (
         <Sun className="h-[1.2rem] w-[1.2rem]" />
