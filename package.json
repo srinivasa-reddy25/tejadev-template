@@ -59,5 +59,8 @@
   },
   "overrides": {
     "rollup": "npm:@rollup/wasm-node"
+  },
+  "dependencies": {
+    "motion": "^12.34.4"
   }
 }
