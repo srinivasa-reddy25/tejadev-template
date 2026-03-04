@@ -134,6 +134,40 @@ src/
 - Import logger from the `logging` workspace package
 - Include `request_id` in log context
 
+### Testing
+
+**Stack:** Vitest + Supertest + mongodb-memory-server
+
+**Commands (run from `apps/api/`):**
+```bash
+bun run test            # run all tests once
+bun run test:watch      # watch mode
+bun run test:unit       # unit tests only (*.test.ts)
+bun run test:int        # integration tests only (*.int.test.ts)
+bun run test:coverage   # generate coverage report
+```
+
+**File structure:**
+```
+src/
+  services/test-db.ts           DB helpers for tests (connect/disconnect/clear)
+  tests/
+    <feature>/
+      test-setup.ts             scoped app factory + seed helpers per route
+      <feature>.test.ts         integration tests
+```
+
+**Pattern for every new controller test:**
+
+1. Create `src/tests/<feature>/test-setup.ts` — exports `create_app()`, `mock_auth_state`, `seed_data()`, `set_authenticated_user()`
+2. `create_app()` mounts only the feature router + `error_handler` — never import the main `app.ts`
+3. Mock `src/middlewares/authentication` with `vi.mock` at the top of each test file
+4. Use `connect_test_db` / `disconnect_test_db` in `beforeAll` / `afterAll`
+5. Use `clear_test_db` + `seed_data()` in `beforeEach`
+6. Use `supertest` for all HTTP assertions
+
+See `apps/api/RULES.md` → **Testing** section for the full pattern and code template.
+
 ---
 
 ## Web App (`apps/web`)
