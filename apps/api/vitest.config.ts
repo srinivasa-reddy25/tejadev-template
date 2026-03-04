@@ -13,7 +13,6 @@ export default defineConfig({
     pool: 'forks',
     testTimeout: 10000,
     hookTimeout: 60000,
-    setupFiles: ['./src/tests/vitest-setup.ts'],
     include: ['src/**/*.test.ts', 'src/tests/integration/**/*.ts'],
     exclude: ['node_modules', '.git', 'dist'],
     root: '.',
