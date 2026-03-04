@@ -102,7 +102,11 @@ export const create_app = () => {
 ### DB helpers (from `src/services/test-db.ts`)
 
 ```ts
-import { connect_test_db, disconnect_test_db, clear_test_db } from '@/services/test-db'
+import {
+  clear_test_db,
+  connect_test_db,
+  disconnect_test_db
+} from '@/services/test-db'
 ```
 
 - `connect_test_db()` — spins up an in-memory MongoDB instance

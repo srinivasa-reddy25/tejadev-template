@@ -139,6 +139,7 @@ src/
 **Stack:** Vitest + Supertest + mongodb-memory-server
 
 **Commands (run from `apps/api/`):**
+
 ```bash
 bun run test            # run all tests once
 bun run test:watch      # watch mode
@@ -148,6 +149,7 @@ bun run test:coverage   # generate coverage report
 ```
 
 **File structure:**
+
 ```
 src/
   services/test-db.ts           DB helpers for tests (connect/disconnect/clear)
