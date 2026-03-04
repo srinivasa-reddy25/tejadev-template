@@ -10,7 +10,8 @@
     "start": "dotenv -e ../../.env -- bun src/index.ts",
     "clean": "rm -rf dist tsconfig.tsbuildinfo",
     "lint": "eslint .",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "seed": "dotenv -e ../../.env -- bun src/scripts/seed.ts"
   },
   "dependencies": {
     "db": "workspace:*",

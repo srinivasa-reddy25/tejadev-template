@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 
-import type { TAuthProvider } from '@tejadev/shared'
+import type { TApiResponse, TAuthProvider } from '@tejadev/shared'
 import { api } from '@/lib/api'
 
 export type TAuthUser = {
@@ -14,12 +14,7 @@ export type TAuthUser = {
   updated_at: string
 }
 
-type TAuthResponse = {
-  message: string
-  data: TAuthUser
-}
-
-const postSync = (): Promise<TAuthResponse> => {
+const postSync = (): Promise<TApiResponse<TAuthUser>> => {
   return api.post('/auth/sync')
 }
 

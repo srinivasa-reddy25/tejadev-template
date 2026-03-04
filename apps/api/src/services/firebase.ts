@@ -2,6 +2,7 @@ import path from 'path'
 
 import { cert, initializeApp } from 'firebase-admin/app'
 import { getAuth, type Auth } from 'firebase-admin/auth'
+import { log } from 'logging'
 
 import { env } from '../constants/env.ts'
 import { throw_error } from '../utils/throw-error.ts'
@@ -26,10 +27,14 @@ const initialize_firebase = async (): Promise<Auth> => {
 initialize_firebase()
   .then((initialized_auth) => {
     auth = initialized_auth
-    console.log('Firebase auth initialized')
+    log.info({ app: 'firebase', message: 'Firebase auth initialized' })
   })
   .catch((error) => {
-    console.error('Failed to initialize Firebase:', error)
+    log.error({
+      app: 'firebase',
+      message: 'Failed to initialize Firebase',
+      meta: { error }
+    })
   })
 
 export default (): Auth => {
