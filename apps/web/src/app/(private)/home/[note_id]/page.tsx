@@ -54,7 +54,7 @@ export default function NoteDetailPage({ params }: TProps) {
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-6 p-6 md:px-10 md:pb-10">
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
+        <Button size="sm" variant="ghost" onClick={() => router.back()}>
           ← Back
         </Button>
         <h2 className="text-xl font-semibold text-foreground">Edit Note</h2>
@@ -65,21 +65,21 @@ export default function NoteDetailPage({ params }: TProps) {
       {!isLoading && (
         <div className="flex flex-col gap-4">
           <textarea
+            className="w-full rounded-xl border border-border bg-card p-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+            rows={8}
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            rows={8}
-            className="w-full rounded-xl border border-border bg-card p-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           />
           <div className="flex justify-between">
             <Button
-              variant="destructive"
-              size="sm"
-              onClick={onDelete}
               disabled={isDeleting}
+              size="sm"
+              variant="destructive"
+              onClick={onDelete}
             >
               {isDeleting ? 'Deleting...' : 'Delete Note'}
             </Button>
-            <Button onClick={onSave} disabled={isUpdating || !note.trim()}>
+            <Button disabled={isUpdating || !note.trim()} onClick={onSave}>
               {isUpdating ? 'Saving...' : 'Save Changes'}
             </Button>
           </div>

@@ -32,22 +32,22 @@ export default function NewNotePage() {
   return (
     <main className="mx-auto flex max-w-4xl flex-col gap-6 p-6 md:px-10 md:pb-10">
       <div className="flex items-center gap-3">
-        <Button variant="ghost" size="sm" onClick={() => router.back()}>
+        <Button size="sm" variant="ghost" onClick={() => router.back()}>
           ← Back
         </Button>
         <h2 className="text-xl font-semibold text-foreground">New Note</h2>
       </div>
 
-      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={onSubmit}>
         <textarea
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
+          className="w-full rounded-xl border border-border bg-card p-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
           placeholder="Write your note here..."
           rows={8}
-          className="w-full rounded-xl border border-border bg-card p-4 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
         />
         <div className="flex justify-end">
-          <Button type="submit" disabled={isPending || !note.trim()}>
+          <Button disabled={isPending || !note.trim()} type="submit">
             {isPending ? 'Creating...' : 'Create Note'}
           </Button>
         </div>
