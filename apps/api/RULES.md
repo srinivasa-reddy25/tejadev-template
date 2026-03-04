@@ -10,6 +10,75 @@ Read this before writing API code.
 4. `src/controllers/*` contains request handlers.
 5. `src/middlewares/*` contains cross-cutting behavior (request-id, success, error).
 
+## Controllers
+
+### File naming
+
+Name controller files descriptively — include the action and entity:
+
+- `get-all-notes.ts` not `get-notes.ts`
+- `get-note-by-id.ts` not `get-note.ts`
+- `update-note-by-id.ts` not `update-note.ts`
+- `delete-note-by-id.ts` not `delete-note.ts`
+- `create-note.ts` (no ID needed, stays as is)
+
+### File structure
+
+Every controller file follows this exact order:
+
+```
+1. type imports        (import type { ... })
+2. regular imports     (import { ... })
+3. controller function (exported)
+4. zod schemas         (defined after the function)
+```
+
+Type imports and regular imports must be in **separate blocks** — never mix `import type` and `import` in the same block.
+
+```ts
+// ✅ Correct
+// ❌ Wrong — type and regular mixed
+import { mg, mg } from 'db'
+import type { Request, Request, Response, Response } from 'express'
+import { z } from 'zod'
+import { throw_error, throw_error } from '../utils/throw-error.ts'
+```
+
+### Zod validation
+
+- If a controller validates **only body** or **only params** → one schema
+- If a controller validates **both params and body** → two separate schemas, params schema first
+
+```ts
+// params only
+const get_note_params_schema = z.object({ note_id: z.string() })
+
+// params + body → separate schemas
+const update_note_params_schema = z.object({ note_id: z.string() })
+const update_note_body_schema = z.object({ note: z.string().min(1) })
+```
+
+### Response shape rules
+
+1. **Create** — only return the `_id`, never the full document:
+
+   ```ts
+   res.status(201).json({ message: '...', data: { note_id: new_note._id } })
+   ```
+
+2. **No data to return** (delete, update) — send only `message`, no `data` key:
+
+   ```ts
+   res.json({ message: 'Note deleted successfully' })
+   ```
+
+3. **Has data** (get by id, get all) — include `data` key:
+   ```ts
+   res.json({ message: '...', data: note })
+   ```
+
+---
+
 ## Error and Logging
 
 1. Use `CustomError` / `throw_error` for expected API errors.
