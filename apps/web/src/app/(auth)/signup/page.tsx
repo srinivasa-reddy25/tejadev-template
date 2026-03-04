@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 import { Button, Card, CardContent, Input, Label, toast } from '@tejadev/ui'
+import { AUTH_COOKIE_NAME } from '@/constants/cookies'
 import { env } from '@/constants/env'
 import { signInWithGooglePopup, signUpWithEmailPassword } from '@/services/auth'
 
@@ -28,7 +29,7 @@ export default function SignupPage() {
   const [verificationSent, setVerificationSent] = useState(false)
 
   const setAuthCookie = () => {
-    document.cookie = 'tdv_auth=1; Path=/; Max-Age=604800; SameSite=Lax'
+    document.cookie = `${AUTH_COOKIE_NAME}=1; Path=/; Max-Age=604800; SameSite=Lax`
   }
 
   const onSignup = async (event: FormEvent<HTMLFormElement>): Promise<void> => {

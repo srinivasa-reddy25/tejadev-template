@@ -3,7 +3,6 @@
 import { Button, toast } from '@tejadev/ui'
 import { ModeToggle } from '@/components/mode-toggle'
 import { env } from '@/constants/env'
-import { useHealth } from '@/hooks/api/health'
 import { useAuth } from '@/providers/auth-provider'
 
 const getErrorMessage = (error: unknown): string => {
@@ -19,7 +18,6 @@ const getErrorMessage = (error: unknown): string => {
 
 export default function PrivatePage() {
   const { user, signOut } = useAuth()
-  const { data: healthData } = useHealth()
 
   const onLogout = async (): Promise<void> => {
     try {
@@ -62,16 +60,6 @@ export default function PrivatePage() {
             <p className="mt-1 text-sm text-tertiary">{user.email}</p>
             <p className="mt-4 text-sm text-muted-foreground">
               Provider: {user.provider}
-            </p>
-          </article>
-
-          <article className="rounded-xl border border-border bg-card p-6">
-            <p className="text-xs uppercase tracking-wider text-muted-foreground">
-              API status
-            </p>
-            <h2 className="mt-2 text-2xl font-semibold text-primary">Health</h2>
-            <p className="mt-1 text-sm text-tertiary">
-              {healthData?.message ?? 'Connected to auth session'}
             </p>
           </article>
         </section>

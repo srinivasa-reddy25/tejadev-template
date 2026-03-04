@@ -41,7 +41,7 @@ export const user_schema = new Schema<TUser>(
   }
 )
 
-user_schema.index({ email: 1 }, { unique: true })
+user_schema.index({ email: 1, provider: 1 }, { unique: true })
 user_schema.index({ firebase_uid: 1 }, { unique: true })
 
 export const user_model = model<TUser>('User', user_schema)

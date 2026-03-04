@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 
-const AUTH_COOKIE_NAME = 'tdv_auth'
+import { AUTH_COOKIE_NAME } from '@/constants/cookies'
+
 const AUTH_ROUTES = ['/login', '/signup']
 const PROTECTED_ROUTES = ['/home']
 
