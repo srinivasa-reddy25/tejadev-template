@@ -18,9 +18,9 @@ export default function NewNotePage() {
     createNote(
       { note },
       {
-        onSuccess: () => {
+        onSuccess: (res) => {
           toast('Note created')
-          router.push('/home')
+          router.push(`/home/${res.data.note_id}`)
         },
         onError: () => {
           toast.error('Failed to create note')
