@@ -2,6 +2,7 @@
 
 import type { FormEvent } from 'react'
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -226,7 +227,7 @@ export default function SignupPage() {
                 </div>
               </form>
               <div className="relative hidden bg-muted md:block">
-                <img
+                <Image
                   alt="Image"
                   className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
                   src="/login-illustration.svg"
