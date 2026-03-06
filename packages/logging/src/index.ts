@@ -19,17 +19,20 @@ const write_log = async (
   payload: TLogPayload
 ): Promise<void> => {
   if (!axiom) {
+    const args: unknown[] = [`[${payload.app}] ${payload.message}`]
+    if (payload.meta !== undefined) args.push(payload.meta)
+
     if (level === 'error') {
-      console.error(`[${payload.app}] ${payload.message}`, payload.meta ?? {})
+      console.error(...args)
       return
     }
 
     if (level === 'warn') {
-      console.warn(`[${payload.app}] ${payload.message}`, payload.meta ?? {})
+      console.warn(...args)
       return
     }
 
-    console.log(`[${payload.app}] ${payload.message}`, payload.meta ?? {})
+    console.log(...args)
     return
   }
 

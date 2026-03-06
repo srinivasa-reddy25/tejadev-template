@@ -110,6 +110,27 @@ src/
   types/            Shared API types
 ```
 
+### Controller Conventions
+
+**File naming** — include action + entity, be explicit:
+
+- `get-all-notes.ts`, `get-note-by-id.ts`, `update-note-by-id.ts`, `delete-note-by-id.ts`, `create-note.ts`
+
+**File structure order:**
+
+1. `import type` block
+2. `import` block (never mix type and regular imports in the same block)
+3. Exported controller function
+4. Zod schemas — defined after the function (params schema first, then body schema if both exist)
+
+**Response rules:**
+
+- `create` → `{ message, data: { <entity>_id } }` — only the ID, never the full document
+- `delete` / `update` with no return data → `{ message }` only — no `data` key
+- `get` → `{ message, data: <document(s)> }`
+
+See `apps/api/RULES.md` → **Controllers** for the full pattern with code examples.
+
 ### Route Conventions
 
 - Base path: `/api/v1`
