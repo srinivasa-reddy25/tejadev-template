@@ -24,8 +24,9 @@ export const proxy = (request: NextRequest) => {
     return NextResponse.redirect(homeUrl)
   }
 
-  if (pathname === '/' && hasAuth) {
-    return NextResponse.redirect(new URL('/home', request.url))
+  if (pathname === '/') {
+    if (hasAuth) return NextResponse.redirect(new URL('/home', request.url))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
   return NextResponse.next()
