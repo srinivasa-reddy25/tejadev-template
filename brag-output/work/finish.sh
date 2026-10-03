@@ -7,13 +7,9 @@ POSTER_T=${POSTER_T:-20.6}
 VBITRATE=${VBITRATE:-16M}
 
 # Film grade (RGB): gentle S-curve with lifted blacks, warm highlights, faintly teal shadows, soft vignette.
-GRADE="format=gbrp,\
-colorbalance=rs=-0.006:gs=0.0:bs=0.006:rh=0.0:gh=0.0:bh=0.004,\
-curves=master='0/0.018 0.22/0.208 0.5/0.505 0.8/0.812 1/0.995',\
-eq=saturation=1.05,\
-vignette=angle=0.16:mode=forward"
+GRADE="format=gbrp"
 TO709="scale=out_color_matrix=bt709:out_range=tv,format=yuv420p"
-GRAIN="noise=c0s=4:c0f=t:c1s=0:c2s=0"
+GRAIN="null"
 
 # poster: strongest settled frame, graded, kept in RGB
 ffmpeg -y -loglevel error -ss "$POSTER_T" -i render/master.mp4 -frames:v 1 -vf "$GRADE,format=rgb24" render/poster.png

@@ -23,7 +23,7 @@
   const show = (el, on) => el.classList.toggle('hidden', !on);
   const fx = (el, o = 1, blur = 0) => {
     el.style.opacity = o.toFixed(4);
-    el.style.filter = blur > 0.05 ? `blur(${blur.toFixed(2)}px)` : 'none';
+    el.style.filter = 'none';
   };
   function tf(el, { x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, s = 1, w = 0, hh = 0 }) {
     el.style.transform = `translate3d(${px(x - w / 2)},${px(y - hh / 2)},${px(z)}) rotateX(${rx.toFixed(3)}deg) rotateY(${ry.toFixed(3)}deg) rotateZ(${rz.toFixed(3)}deg) scale(${s.toFixed(4)})`;
@@ -32,7 +32,7 @@
   const rise = (el, t, a, dy = 60, blur = 14, dur = 0.6, extraO = 1) => {
     const p = E.outExpo(P(t, a, a + dur));
     el.style.transform = `translateY(${px(lerp(dy, 0, p))})`;
-    fx(el, P(t, a, a + 0.18) * extraO, blur * (1 - p));
+    fx(el, P(t, a, a + 0.22) * extraO, 0);
   };
 
   const stage = $('#stage');
@@ -86,9 +86,9 @@
     show(s1, on);
     show(bgDark, t < C.drop || t >= C.endHit);
     if (!on) return;
-    const col = E.inExpo(P(t, C.strike + 0.22, C.drop));
-    tf(c1, { x: 960, y: 540, s: lerp(1, 1.035, E.inOutSine(P(t, 0, C.strike))) * (1 + 1.4 * col), w: 1920, hh: 1080 });
-    fx(c1, 1 - col, 18 * col);
+    const col = E.inOutSine(P(t, C.drop - 0.22, C.drop));
+    tf(c1, { x: 960, y: 540, s: 1, w: 1920, hh: 1080 });
+    fx(c1, 1 - col, 0);
     rise(lbl1, t, C.beats[0] - 0.05, 20, 8);
     chores.forEach((c, i) => {
       const a = C.chores[i] - 0.06;
@@ -113,8 +113,8 @@
       ${PILLS.map(([n]) => `<div class="pill" style="position:absolute;left:0;top:0;display:flex;align-items:center;gap:12px;padding:14px 24px 14px 18px;border-radius:999px;background:#FFFBF2;
         box-shadow:0 26px 50px -24px rgba(80,50,10,.35);font-family:M,monospace;font-size:26px;color:#3B342A;white-space:nowrap"><i style="width:14px;height:14px;border-radius:50%;background:#2D4F1D"></i>${n}<span style="color:#2D4F1D;font-weight:600">✓</span></div>`).join('')}
       <div class="disp" id="wm1" style="position:absolute;left:0;width:1920px;top:228px;text-align:center;color:#1E1C19;font-size:250px">${'TejaDev'.split('').map(c => `<span class="mask"><span class="w lt">${c}</span></span>`).join('')}</div>
-      <div class="serif" id="wm2" style="position:absolute;left:0;width:1920px;top:440px;text-align:center;color:#2D4F1D;font-size:236px;line-height:1">Template</div>
-      <div id="tag2" style="position:absolute;left:0;width:1920px;top:742px;text-align:center;color:#6B5F4C;font-size:46px;font-weight:500;letter-spacing:-.01em">${words('All wired before you write a single line.')}</div>
+      <div class="serif" id="wm2" style="position:absolute;left:0;width:1920px;top:452px;text-align:center;color:#A39E94;font-size:250px;line-height:.95">Template</div>
+      <div id="tag2" style="position:absolute;left:0;width:1920px;top:742px;text-align:center;color:#6E6A63;font-size:44px;font-weight:500;letter-spacing:-.01em">${words('All wired before you write a single line.')}</div>
     </div>`;
   const c2 = $('#c2');
   const wmL = $$('.lt', s2);
@@ -128,8 +128,8 @@
     show(bgCream, t >= C.drop && t < C.endHit);
     if (!on) return;
     const out = E.inCubic(P(t, 7.1, 7.48));
-    tf(c2, { x: 960, y: 540 - 160 * out, s: lerp(1, 1.05, E.inOutSine(P(t, C.drop, 7.48))), w: 1920, hh: 1080 });
-    fx(c2, 1 - out, 14 * out);
+    tf(c2, { x: 960, y: 540 - 60 * out, s: 1, w: 1920, hh: 1080 });
+    fx(c2, 1 - out, 0);
     wmL.forEach((l, i) => {
       const p = E.outExpo(P(t, C.drop + i * 0.04, C.drop + i * 0.04 + 0.7));
       l.style.transform = `translateY(${lerp(108, 0, p).toFixed(2)}%)`;
@@ -174,7 +174,7 @@
     const enter = E.outExpo(P(t, C.term, C.term + 0.85));
     const q = E.inOutSine(P(t, C.term + 0.8, 11.9));
     const whip = E.inCubic(P(t, 11.85, 12.2));
-    return { x: 1255 - 10 * q, y: lerp(1500, 545, enter) - 1500 * whip, z: 0, rx: lerp(34, 7, enter) - 3 * q, ry: lerp(-26, -12, enter) + 5 * q, rz: lerp(6, 0, enter), s: lerp(0.93, 0.97, q) };
+    return { x: 1255, y: lerp(1500, 540, enter) - 1500 * whip, z: 0, rx: 0, ry: 0, rz: 0, s: 0.95 };
   }
   function renderS3(t) {
     const on = t >= C.term - 0.05 && t < 12.25;
@@ -219,7 +219,7 @@
   ];
   s4.innerHTML = `<div class="glow" style="left:260px;top:180px;width:1400px;height:900px;background:radial-gradient(closest-side,rgba(45,79,29,.10),rgba(45,79,29,0))"></div>
     <div class="cam" id="c4">
-      <div class="disp" id="h4" style="position:absolute;left:0;width:1920px;top:92px;text-align:center;color:#1E1C19;font-size:128px">${words('Already')} <span class="w serif" style="color:#2D4F1D;font-size:1.12em">wired.</span></div>
+      <div class="disp" id="h4" style="position:absolute;left:0;width:1920px;top:118px;text-align:center;color:#141412;font-size:124px">${words('Already')} <span class="w serif" style="color:#2D4F1D">wired.</span></div>
       <div id="n4" style="position:absolute;left:0;width:1920px;top:262px;text-align:center;font-family:M,monospace;font-size:26px;color:#7A6E5A"></div>
       <div class="cam" id="grid" style="transform-style:preserve-3d">${STACK.map(([a, b]) => `<div class="tile"><b>${a}</b><em>${b}</em><div class="dot"></div><div class="bar"><i></i></div></div>`).join('')}</div>
     </div>`;
@@ -240,30 +240,30 @@
     const v = vel(s4Off, t);
     motionBlur(s4, 'mb4', v.vx, v.vy);
     const zoom = E.inExpo(P(t, C.end + 0.1, C.endHit));
-    tf(c4, { x: 960, y: 540 + off.y, s: lerp(1, 1.035, E.inOutSine(P(t, 12.4, C.end))) * (1 + 1.2 * zoom), w: 1920, hh: 1080 });
-    c4.style.opacity = (1 - zoom).toFixed(3);
+    tf(c4, { x: 960, y: 540 + off.y, s: 1, w: 1920, hh: 1080 });
+    c4.style.opacity = (1 - E.inOutSine(P(t, C.endHit - 0.3, C.endHit))).toFixed(3);
     h4w.forEach((w, i) => rise(w, t, C.grid + 0.12 + i * 0.08, 60, 16, 0.65));
     const lit = tiles.filter((_, i) => t >= TILE_T(i) + 0.25).length;
-    n4.textContent = t >= C.tiles0 ? `${String(lit).padStart(2, '0')} / 12 wired  ·  0 lines written` : '';
+    n4.textContent = '';
     n4.style.opacity = P(t, C.tiles0, C.tiles0 + 0.2).toFixed(3);
-    tf(grid, { x: 960, y: 610, rx: lerp(10, 5, P(t, 12.4, C.end)), ry: Math.sin(t * 0.4) * 2, w: 1920, hh: 1080 });
-    const hit = Math.exp(-Math.pow((t - 15.82) / 0.09, 2));
+    tf(grid, { x: 960, y: 600, w: 1920, hh: 1080 });
+    const hit = 0;
     tiles.forEach((tile, i) => {
       const col = i % 4;
       const row = Math.floor(i / 4);
       const a = TILE_T(i);
       const p = E.outExpo(P(t, a, a + 0.7));
       const x = 255 + col * 360 + 165;
-      const y = 340 + row * 180 + 75;
+      const y = 330 + row * 160 + 66;
       if (t < a) {
         tile.el.style.opacity = 0;
         return;
       }
-      tf(tile.el, { x, y: y + lerp(50, 0, p), z: lerp(-260, 0, p) + 40 * hit, rx: lerp(-18, 0, p), s: lerp(0.9, 1, p) * (1 + 0.02 * hit), w: 330, hh: 150 });
-      fx(tile.el, P(t, a, a + 0.15), 12 * (1 - p));
+      tf(tile.el, { x, y: y + lerp(28, 0, p), w: 330, hh: 132 });
+      fx(tile.el, P(t, a, a + 0.25), 0);
       const fill = E.outExpo(P(t, a + 0.08, a + 0.65));
       tile.bar.style.width = `${(100 * fill).toFixed(2)}%`;
-      tile.dot.style.transform = `scale(${(1 + 0.6 * Math.exp(-Math.pow((t - a - 0.3) / 0.08, 2)) + 0.4 * hit).toFixed(3)})`;
+      
       tile.dot.style.boxShadow = `0 0 0 ${(8 * hit).toFixed(1)}px rgba(45,79,29,${(0.18 * hit).toFixed(3)})`;
     });
   }
@@ -271,10 +271,10 @@
   // ============================================================ S5 — end card
   s5.innerHTML = `<div class="glow" id="g5" style="left:260px;top:120px;width:1400px;height:900px;background:radial-gradient(closest-side,rgba(166,219,123,.20),rgba(166,219,123,0))"></div>
     <div class="cam" id="c5">
-      <div class="disp" style="position:absolute;left:0;width:1920px;top:196px;text-align:center;color:#F5E4C8;font-size:236px">${'TejaDev'.split('').map(c => `<span class="mask"><span class="w lt">${c}</span></span>`).join('')}</div>
-      <div class="serif" id="e2" style="position:absolute;left:0;width:1920px;top:398px;text-align:center;color:#A6DB7B;font-size:220px;line-height:1">Template</div>
-      <div id="e3" style="position:absolute;left:0;width:1920px;top:690px;text-align:center;color:rgba(245,228,200,.78);font-size:44px;font-weight:500;letter-spacing:-.01em">${words('Clone it. Fill .env. Build the feature.')}</div>
-      <div id="e4" style="position:absolute;left:0;width:1920px;top:792px;text-align:center;font-family:M,monospace;font-size:27px;color:#A6DB7B">github.com/srinivasa-reddy25/tejadev-template</div>
+      <div class="disp" style="position:absolute;left:0;width:1920px;top:196px;text-align:center;color:#EDEAE3;font-size:236px">${'TejaDev'.split('').map(c => `<span class="mask"><span class="w lt">${c}</span></span>`).join('')}</div>
+      <div class="serif" id="e2" style="position:absolute;left:0;width:1920px;top:414px;text-align:center;color:#6E6A63;font-size:236px;line-height:.95">Template</div>
+      <div id="e3" style="position:absolute;left:0;width:1920px;top:690px;text-align:center;color:rgba(237,234,227,.72);font-size:42px;font-weight:500;letter-spacing:-.01em">${words('Clone it. Fill .env. Build the feature.')}</div>
+      <div id="e4" style="position:absolute;left:0;width:1920px;top:792px;text-align:center;font-family:M,monospace;font-size:26px;color:#8B877F">github.com/srinivasa-reddy25/tejadev-template</div>
     </div>`;
   const c5 = $('#c5');
   const eL = $$('.lt', s5);
@@ -286,7 +286,7 @@
     const on = t >= C.endHit;
     show(s5, on);
     if (!on) return;
-    tf(c5, { x: 960, y: 540, s: lerp(1.03, 1.0, E.outExpo(P(t, C.endHit, C.endHit + 1.2))) * lerp(1, 1.025, E.inOutSine(P(t, C.endHit + 1, 22))), w: 1920, hh: 1080 });
+    tf(c5, { x: 960, y: 540, s: 1, w: 1920, hh: 1080 });
     eL.forEach((l, i) => {
       const p = E.outExpo(P(t, C.endHit + i * 0.04, C.endHit + i * 0.04 + 0.75));
       l.style.transform = `translateY(${lerp(108, 0, p).toFixed(2)}%)`;
@@ -301,7 +301,7 @@
 
   function renderAt(t, smp) {
     SMP = smp || samplesAt(t);
-    flash.style.opacity = (t >= C.drop ? 1 - E.outCubic(P(t, C.drop, C.drop + 0.5)) : 0).toFixed(3);
+    flash.style.opacity = '0';
     if (t >= C.endHit) flash.style.opacity = (0.0).toFixed(3);
     fade.style.opacity = E.inOutSine(P(t, C.fade, C.duration)).toFixed(3);
     renderS1(t);
@@ -311,8 +311,7 @@
     renderS5(t);
   }
   const WIN = [
-    [C.strike, C.drop, 6, 0.5], [7.1, C.term + 0.7, 5, 0.5], [11.8, 12.45, 6, 1.0], [12.5, 14.4, 3, 0.5], [C.end + 0.1, C.endHit, 6, 0.5],
-    [C.endHit, C.endHit + 0.5, 3, 0.5], [C.drop, C.drop + 0.4, 3, 0.5],
+    [C.term, C.term + 0.5, 4, 0.5], [11.8, 12.45, 5, 0.7],
   ];
   function samplesAt(t) {
     let n = 1;
