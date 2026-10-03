@@ -213,9 +213,8 @@
 
   // ============================================================ S4 — already wired
   const STACK = [
-    ['Next.js 16', 'Web app'], ['React 19', 'UI runtime'], ['Express + Zod', 'Typed API'], ['Bun', 'Runtime + workspaces'],
-    ['Turborepo', 'Monorepo builds'], ['Firebase', 'Auth, client + admin'], ['MongoDB', 'Mongoose models'], ['Axiom', 'Structured logging'],
-    ['shadcn/ui', 'Shared components'], ['TanStack Query', 'Server state'], ['Tailwind CSS', 'Design tokens'], ['Husky + lint', 'Commit hygiene'],
+    ['web', 'apps · Next.js 16 app'], ['api', 'apps · Express API, port 8000'], ['db', 'packages · Mongoose + models'], ['ui', 'packages · shadcn/ui library'],
+    ['logging', 'packages · Axiom logger'], ['shared', 'packages · types + constants'], ['eslint-config', 'packages · base, next, node'], ['typescript-config', 'packages · tsconfig presets'],
   ];
   s4.innerHTML = `<div class="glow" style="left:260px;top:180px;width:1400px;height:900px;background:radial-gradient(closest-side,rgba(45,79,29,.10),rgba(45,79,29,0))"></div>
     <div class="cam" id="c4">
@@ -254,7 +253,7 @@
       const a = TILE_T(i);
       const p = E.outExpo(P(t, a, a + 0.7));
       const x = 255 + col * 360 + 165;
-      const y = 330 + row * 160 + 66;
+      const y = 410 + row * 160 + 66;
       if (t < a) {
         tile.el.style.opacity = 0;
         return;

@@ -35,7 +35,7 @@ body{font-family:H,sans-serif;-webkit-font-smoothing:antialiased}
 .feat{position:absolute;color:var(--ink);font-size:124px}
 .feat .serif{color:var(--green);font-size:1em}
 .tile{position:absolute;left:0;top:0;width:330px;height:132px;border-radius:18px;background:#FFFFFF;padding:28px 28px;box-shadow:0 0 0 1px rgba(20,20,18,.08)}
-.tile b{display:block;font-size:31px;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.tile b{display:block;font-family:M,monospace;font-size:26px;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
 .tile em{display:block;font-style:normal;font-size:19px;font-weight:500;color:#8B877F;margin-top:8px}
 .tile .dot{position:absolute;right:28px;top:34px;width:10px;height:10px;border-radius:50%;background:var(--green)}
 .tile .bar{display:none;position:absolute;left:26px;right:26px;bottom:22px;height:6px;border-radius:3px;background:#EFE4D0;overflow:hidden}

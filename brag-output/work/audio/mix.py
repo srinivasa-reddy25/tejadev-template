@@ -65,7 +65,7 @@ for i, cmd in enumerate(CMDS):
 for t in C['ready']:
     place(SFX / 'interface' / 'select_008.ogg', t, -26, pan=0.3)
 # tiles assemble on 16ths, and a soft unison hit
-for i in range(12):
+for i in range(8):
     place(SFX / 'interface' / f'click_00{1 + i % 5}.ogg', C['tiles0'] + i * 0.1365, -28 + (i % 4 == 0) * 2, pan=-0.45 + 0.08 * i)
 place(SFX / 'impact' / 'impactSoft_medium_001.ogg', 15.82, -27)
 
