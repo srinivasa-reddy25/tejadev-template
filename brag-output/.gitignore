@@ -1,0 +1,9 @@
+# reproducible intermediates
+work/node_modules
+work/render/
+work/stills/
+work/review/
+work/review2/
+work/audio/*.wav
+work/*.log
+work/audio/track.mp3

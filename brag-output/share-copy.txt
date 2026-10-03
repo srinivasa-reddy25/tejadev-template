@@ -1,0 +1,1 @@
+Day 1 of every new project: set up auth, wire the database, configure the monorepo, fight ESLint. Again. TejaDev Template has all of it wired before you write a single line: clone it, fill .env, build the feature. github.com/srinivasa-reddy25/tejadev-template
